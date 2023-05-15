@@ -1,22 +1,14 @@
 "use client"
 import { useState, useEffect } from 'react';
-
-interface Movie {
-  id: number;
-  title: string;
-  release_date: string;
-  overview: string;
-}
+import { Movie }  from '../types/movie.dto';
 
 
-const API_KEY = process.env.TMDB_API_KEY;
-const TRENDING_MOVIES_URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`;
+const TRENDING_MOVIES_URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
 
 function TrendingMovies() {
   const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
-    console.log(API_KEY);
     fetch(TRENDING_MOVIES_URL)
       .then(response => {
         if (!response.ok) {
@@ -38,7 +30,7 @@ function TrendingMovies() {
       <h1>Trending Movies This Week</h1>
       <ul>
         {trendingMovies.map(movie => (
-          <li key={movie.id}>{movie.title}</li>
+          <li key={movie.id}>{movie.title} - {movie.release_date.toString()}</li>
         ))}
       </ul>
     </div>
