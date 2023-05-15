@@ -1,20 +1,21 @@
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import Header from "./components/Header/Header";
 
 export const metadata = {
-  title: 'Best Movies',
-  description: 'Eyes flickin` good',
-}
+  title: "Best Movies",
+  description: "Eyes flickin` good",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body >{children}</body>
+      <body>
+        <Header />
+        <main>{children}</main>
+      </body>
     </html>
-  )
+  );
 }
