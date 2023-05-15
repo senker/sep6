@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react';
 import { Movie }  from '../types/movie.dto';
+import styles from './page.module.css'
 
 
 const TRENDING_MOVIES_URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
@@ -26,8 +27,8 @@ function TrendingMovies() {
   }, []);
 
   return (
-    <div>
-      <h1>Trending Movies This Week</h1>
+    <div className={styles.body}>
+      <h1 >Trending Movies This Week</h1>
       <ul>
         {trendingMovies.map(movie => (
           <li key={movie.id}>{movie.title} - {movie.release_date.toString()}</li>
