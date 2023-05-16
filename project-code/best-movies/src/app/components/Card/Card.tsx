@@ -8,14 +8,12 @@ import { CardProps } from "@/types/cardProps.dto"
 const Card: React.FC<CardProps> = ( {Card} ) => {
     const { id, title } = Card;
     const [posterUrl, setPosterUrl] = useState("");
+    const MOVIE_ID = `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
 
     useEffect(() => {
         async function fetchMovieDetails() {
-          const response = await fetch(
-            `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
-          );
+          const response = await fetch(MOVIE_ID);
           const data = await response.json();
-    
           const posterPath = data.poster_path;
           const baseUrl = "https://image.tmdb.org/t/p/original";
           const posterUrl = `${baseUrl}${posterPath}`;
