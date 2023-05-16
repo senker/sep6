@@ -47,7 +47,7 @@ export async function POST(request: NextRequest, response: NextResponse) : Promi
                 name,
             },
         })
-        return new NextResponse(JSON.stringify(user), {status: 200});
+        return new NextResponse(JSON.stringify(user), {status: 201});
     } catch (error) {
         return new NextResponse("Could not create a user account", {status: 500});
     }
@@ -59,7 +59,7 @@ export async function PATCH(request: NextRequest, response: NextResponse) : Prom
         const {searchParams} = new URL(request.url);
         const id = searchParams.get('id');
 
-        // Check if email is provided
+        // Check if ID is provided
         if (!id) {
             return new NextResponse("Provide a valid ID", {status: 400});
         }
@@ -75,7 +75,7 @@ export async function PATCH(request: NextRequest, response: NextResponse) : Prom
                 name,
             },
         })
-        return new NextResponse(JSON.stringify(updatedUser), {status: 200});
+        return new NextResponse(JSON.stringify(updatedUser), {status: 204});
     } catch (error) {
         return new NextResponse("Could not save the edited user", {status: 500});
     }
@@ -93,33 +93,4 @@ export async function PATCH(request: NextRequest, response: NextResponse) : Prom
 //     } catch (error) {
 //         return new Response("Could not return test user", { status: 500 });
 //     }
-// }
-
-// GET ALL USERS
-// export async function GET(request: NextApiRequest, response: NextApiResponse) {
-//     try {
-//         const data = await prisma.user.findMany();
-//         return new Response(JSON.stringify(data), { status: 200 });
-//     } catch (error) {
-//         console.error(error);
-//         return new Response("An error occurred", { status: 500 });
-//     }
-// }
-
-
-// export async function GET(request: NextApiRequest, response: NextApiResponse) {
-//     return new Response(JSON.stringify({name: 'John Doe'}),
-//         {
-//             status: 200,
-//         });
-// }
-
-// type Data = {
-//     name: string
-// }
-// export default function handler(
-//     request: NextApiRequest,
-//     response: NextApiResponse<Data>
-// ) {
-//     response.status(200).json({ name: 'John Doe' })
 // }
