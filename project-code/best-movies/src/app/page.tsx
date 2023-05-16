@@ -1,22 +1,25 @@
-import MainPage  from './components/Home/MainPage'
+import MainPage from './components/Home/MainPage'
 
 async function getTestUser() {
-  const res = await fetch(`${process.env.BASE_URL}/api/getTestUser`)
-  if (!res.ok) {
-    // TODO - handle error better
-    console.log(res)
-  }
-  return res.json();
+// TODO - use dynamically fetched email
+    const res = await fetch(`${process.env.BASE_URL}/api/user?email=dp@email.com`, {
+        cache: 'no-cache'
+    })
+    if (!res.ok) {
+        // TODO - handle error better
+        console.log(res)
+    }
+    return res.json();
 }
 
 export default async function Home() {
-  const testUser = await getTestUser()
-  // console.log(testUser)
+    const testUser = await getTestUser()
+    console.log(testUser)
 
-  return (
-    <main>
-      <div>Hello, {testUser?.name}</div>
-      <MainPage/>
-    </main>
-  )
+    return (
+        <main>
+            <div>Hello, {testUser?.name}</div>
+            <MainPage/>
+        </main>
+    )
 }

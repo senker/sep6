@@ -6,11 +6,14 @@ export default async function handler(
     response: NextApiResponse
 ) {
     try {
-        const user = await prisma.user.findFirst({
-            where: {
-                email: 'dp@email.com'
-            }
-        });
+        const { email, password, name } = request.body;
+        const user= await prisma.user.create({
+            data: {
+                email,
+                password,
+                name,
+            },
+        })
         return response.status(200).json(user);
     } catch (error) {
         return response.status(500).json({error});

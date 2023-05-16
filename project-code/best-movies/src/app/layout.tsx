@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./components/Header/Header";
 
 export const metadata = {
-  title: "Best Movies",
+  title: "Best Movies | Home",
   description: "Eyes flickin` good",
 };
 
