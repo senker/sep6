@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Bigelow+Rules&family=Open+Sans:wght@300&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,700&display=swap');
+
+.header {
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.navbar {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  margin: 0px;
+  background-color: black;
+
+  .logo {
+    display: table-caption;
+    letter-spacing: 0.02em;
+    line-height: 18px;
+    width: 10px;
+    margin: 15px 0px 0px 32px;
+    text-transform: uppercase;
+    color: aliceblue;
+    text-decoration: none;
+    font-family: 'Roboto Condensed';
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .link {
+      color: aliceblue;
+      padding: 10px 15px;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: 'Roboto Condensed';
+    }
+  }
+}

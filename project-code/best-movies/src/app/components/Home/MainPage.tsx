@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Movie } from "@/types/movie.dto";
-import styles from "../../page.module.css";
+import styles from "../../page.module.scss";
+import CardList from "../CardList/CardList";
 
 
 const MainPage:React.FC = () =>  {
@@ -29,14 +30,7 @@ const TRENDING_MOVIES_URL = `https://api.themoviedb.org/3/trending/movie/week?ap
 
   return (
     <div className={styles.body}>
-      <h1>Trending Movies This Week</h1>
-      <ul>
-        {trendingMovies.map((movie) => (
-          <li key={movie.id}>
-            {movie.title} - {movie.release_date.toString()}
-          </li>
-        ))}
-      </ul>
+      <CardList cards={trendingMovies} />
     </div>
   );
 };

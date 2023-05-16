@@ -2,7 +2,11 @@
 export default function HomePage() {
   return (
     <div>
-        Hello
+        <h1>Login page.</h1>
+        <h1>Login page.</h1>
+        <h1>Login page.</h1>
+        <h1>Login page.</h1>
+        <h1>Login page.</h1>
     </div>
-      )
+    )
 }
