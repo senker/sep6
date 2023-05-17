@@ -1,3 +1,10 @@
-export default function Dashboard() {
-    return <>Super secret page</>
+export default async function Dashboard() {
+  return (
+    <>
+      <div>---</div>
+      <div>---</div>
+      <div>---</div>
+      Super secret page
+    </>
+  );
 }
