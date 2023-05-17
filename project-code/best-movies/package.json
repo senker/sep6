@@ -17,15 +17,18 @@
     "@types/node": "20.1.4",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
+    "bcrypt": "^5.1.0",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",
     "next": "13.4.2",
+    "next-auth": "^0.0.0-pr.6777.c5550344",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "^1.62.1",
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "prisma": "^4.14.0",
     "ts-node": "^10.9.1"
   }
