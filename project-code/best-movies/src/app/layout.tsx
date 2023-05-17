@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./components/Header/Header";
 import { Providers } from "./providers";
+import styles from "./page.module.scss"
 
 export const metadata = {
   title: "Best Movies | Home",
@@ -17,7 +18,9 @@ export default function RootLayout({
       <body>
         <Providers>
           <Header />
-          <main>{children}</main>
+          <div className={styles.mainDiv}>
+            <main>{children}</main>
+          </div>
         </Providers>
       </body>
     </html>
