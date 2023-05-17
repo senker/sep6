@@ -1,25 +1,32 @@
-import MainPage from './components/Home/MainPage'
+import { getServerSession } from "next-auth";
+import MainPage from "./components/Home/MainPage";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
 async function getTestUser() {
-// TODO - use dynamically fetched email
-    const res = await fetch(`${process.env.BASE_URL}/api/user?email=dp@email.com`, {
-        cache: 'no-cache'
-    })
-    if (!res.ok) {
-        // TODO - handle error better
-        console.log(res)
+  // TODO - use dynamically fetched email
+  const res = await fetch(
+    `${process.env.BASE_URL}/api/user?email=dp@email.com`,
+    {
+      cache: "no-cache",
     }
-    return res.json();
+  );
+  if (!res.ok) {
+    // TODO - handle error better
+    console.log(res);
+  }
+  return res.json();
 }
 
 export default async function Home() {
-    const testUser = await getTestUser()
-    console.log(testUser)
+  const session = await getServerSession(authOptions);
+  const testUser = await getTestUser();
+  console.log(testUser);
 
-    return (
-        <main>
-            <div>Hello, {testUser?.name}</div>
-            <MainPage/>
-        </main>
-    )
+  return (
+    <main>
+      <div>Hello, {testUser?.name}</div>
+      <pre>{JSON.stringify(session)}</pre>
+      <MainPage />
+    </main>
+  );
 }

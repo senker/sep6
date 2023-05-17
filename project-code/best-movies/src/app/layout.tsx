@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./components/Header/Header";
+import { Providers } from "./providers";
 
 export const metadata = {
   title: "Best Movies | Home",
@@ -14,8 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
-        <main>{children}</main>
+        <Providers>
+          <Header />
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   );
