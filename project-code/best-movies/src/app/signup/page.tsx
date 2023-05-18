@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 import dynamic from "next/dynamic";
+import { stringify } from "querystring";
 
 interface SignUpFormData {
-  firstName: string;
-  lastName: string;
+  
   email: string;
+  name: string;
   password: string;
-  repeatPassword: string;
 }
 
 const SignUpForm = dynamic(() => import("../components/SignUp/SignUpForm"), {
@@ -15,6 +15,7 @@ const SignUpForm = dynamic(() => import("../components/SignUp/SignUpForm"), {
 });
 
 async function createUser(formData: SignUpFormData) {
+  console.log(JSON.stringify(formData));
     try {
       const response = await fetch("/api/user", {
         method: "POST",
@@ -23,7 +24,7 @@ async function createUser(formData: SignUpFormData) {
         },
         body: JSON.stringify(formData),
       });
-  
+
       if (response.ok) {
         // User created successfully
         const user = await response.json();

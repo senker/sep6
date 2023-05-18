@@ -5,20 +5,16 @@ interface SignUpFormProps {
 }
 
 interface SignUpFormData {
-  firstName: string;
-  lastName: string;
   email: string;
+  name: string;
   password: string;
-  repeatPassword: string;
 }
 
 const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
   const [formValues, setFormValues] = useState<SignUpFormData>({
-    firstName: "",
-    lastName: "",
     email: "",
+    name: "",
     password: "",
-    repeatPassword: "",
   });
   const [passwordError, setPasswordError] = useState<string>("");
 
@@ -32,10 +28,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (formValues.password !== formValues.repeatPassword) {
+/*     if (formValues.password !== formValues.repeatPassword) {
       setPasswordError("Passwords don't match");
       return;
-    }
+    } */
     onSubmit(formValues);
   };
 
@@ -43,22 +39,12 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
     <div>
       <h1>Movie Website Registration</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="firstName">First Name:</label>
+        <label htmlFor="name">First Name:</label>
         <input
           type="text"
-          id="firstName"
-          name="firstName"
-          value={formValues.firstName}
-          onChange={handleInputChange}
-          required
-        />
-
-        <label htmlFor="lastName">Last Name:</label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          value={formValues.lastName}
+          id="name"
+          name="name"
+          value={formValues.name}
           onChange={handleInputChange}
           required
         />
@@ -87,8 +73,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
         <input
           type="password"
           id="repeatPassword"
-          name="repeatPassword"
-          value={formValues.repeatPassword}
+          name="repeatPassword"/* 
+          value={formValues.repeatPassword} */
           onChange={handleInputChange}
           required
         />
