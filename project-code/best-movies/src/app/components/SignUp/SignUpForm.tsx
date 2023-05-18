@@ -16,22 +16,27 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
     name: "",
     password: "",
   });
+  const [repeatPassword, setRepeatPassword] = useState<string>("");
   const [passwordError, setPasswordError] = useState<string>("");
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
+    if (name === "repeatPassword") {
+      setRepeatPassword(value);
+    } else {
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-/*     if (formValues.password !== formValues.repeatPassword) {
+    if (formValues.password !== repeatPassword) {
       setPasswordError("Passwords don't match");
       return;
-    } */
+    }
     onSubmit(formValues);
   };
 
@@ -73,8 +78,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
         <input
           type="password"
           id="repeatPassword"
-          name="repeatPassword"/* 
-          value={formValues.repeatPassword} */
+          name="repeatPassword"
+          value={repeatPassword}
           onChange={handleInputChange}
           required
         />
