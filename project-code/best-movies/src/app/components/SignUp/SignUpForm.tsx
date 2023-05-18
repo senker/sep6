@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import styles from "./SignUpForm.module.scss";
 interface SignUpFormProps {
   onSubmit: (formData: SignUpFormData) => void;
 }
@@ -41,53 +41,67 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <div>
-      <h1>Movie Website Registration</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">First Name:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formValues.name}
-          onChange={handleInputChange}
-          required
+    <div className={styles.container}>
+      <div className={styles.imageContainer}>
+        <img
+          className={styles.image}
+          src="https://images6.alphacoders.com/857/857790.jpg"
+          alt="Background"
         />
+      </div>
+      <div className={styles.formContainer}>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.card}>
+            <label htmlFor="name">First Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formValues.name}
+              onChange={handleInputChange}
+              required
+              className={styles.input}
+            />
 
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formValues.email}
-          onChange={handleInputChange}
-          required
-        />
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formValues.email}
+              onChange={handleInputChange}
+              required
+              className={styles.input}
+            />
 
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formValues.password}
-          onChange={handleInputChange}
-          required
-        />
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formValues.password}
+              onChange={handleInputChange}
+              required
+              className={styles.input}
+            />
 
-        <label htmlFor="repeatPassword">Repeat Password:</label>
-        <input
-          type="password"
-          id="repeatPassword"
-          name="repeatPassword"
-          value={repeatPassword}
-          onChange={handleInputChange}
-          required
-        />
+            <label htmlFor="repeatPassword">Repeat Password:</label>
+            <input
+              type="password"
+              id="repeatPassword"
+              name="repeatPassword"
+              value={repeatPassword}
+              onChange={handleInputChange}
+              required
+              className={styles.input}
+            />
 
-        {passwordError && <p>{passwordError}</p>}
+            {passwordError && <p className={styles.error}>{passwordError}</p>}
 
-        <input type="submit" value="Register" />
-      </form>
+            <input type="submit" value="Register" className={styles.button} />
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
