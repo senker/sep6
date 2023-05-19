@@ -1,6 +1,8 @@
 .container {
     display: flex;
     justify-content: space-between;
+    margin: 0 220px;
+    height: 90vh; /* Add margin to the left and right of the container */
   }
   
   .imageContainer {
@@ -8,20 +10,31 @@
   }
   
   .image {
-    width: 100%;
-    height: 100vh;
+    width: 80%; /* Adjust the width of the image as desired */
+    height: 90vh;
     object-fit: cover;
+    position: relative; /* Position relative for the fade effect */
   }
   
-  .body {
+  .image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.5),
-        transparent,
-        transparent,
-        rgba(0, 0, 0, 0.5)
-      ),
-      url("https://images6.alphacoders.com/857/857790.jpg");
+      to right,
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 1)
+    );
+  }
+  
+  
+  .body {
+    background-image: url("https://images6.alphacoders.com/857/857790.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -32,6 +45,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 90vh; /* Set the height of the container */
   }
   
   .form {
@@ -39,15 +53,13 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* Set a max-width to limit the width of the form */
+    width: 100%; /* Ensure the form fills the available width */
   }
   
   .title {
     text-align: center;
     margin-bottom: 20px;
-  }
-  
-  .card {
-    padding: 10px;
   }
   
   .label {
@@ -56,7 +68,7 @@
   }
   
   .input {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -77,4 +89,5 @@
     border-radius: 5px;
     cursor: pointer;
   }
+  
   
