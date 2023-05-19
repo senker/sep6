@@ -1,93 +1,77 @@
 .container {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 220px;
-    height: 90vh; /* Add margin to the left and right of the container */
-  }
-  
-  .imageContainer {
-    flex: 1;
-  }
-  
-  .image {
-    width: 80%; /* Adjust the width of the image as desired */
-    height: 90vh;
-    object-fit: cover;
-    position: relative; /* Position relative for the fade effect */
-  }
-  
-  .image::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 1)
-    );
-  }
-  
-  
-  .body {
-    background-image: url("https://images6.alphacoders.com/857/857790.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  
-  .formContainer {
-    flex: 0.3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 90vh; /* Set the height of the container */
-  }
-  
-  .form {
-    background-color: gray;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 400px; /* Set a max-width to limit the width of the form */
-    width: 100%; /* Ensure the form fills the available width */
-  }
-  
-  .title {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .label {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .input {
-    width: 90%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .error {
-    color: red;
-    margin-top: 5px;
-  }
-  
-  .button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  
+  display: flex;
+  justify-content: space-between;
+  margin: 0 220px;
+  height: 90vh; /* Add margin to the left and right of the container */
+}
+
+.imageContainer {
+  flex: 1;
+}
+
+.imageBlur {
+  background-image: url("https://images6.alphacoders.com/857/857790.jpg");
+  width: 85%; /* Adjust the width of the image as desired */
+  height: 100%;
+  margin-top: 55px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative; /* Position relative for the fade effect */
+  box-shadow: 0 20px 20px 20px white inset;
+}
+
+.body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.formContainer {
+  flex: 0.3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh; /* Set the height of the container */
+}
+
+.form {
+  background-color: gray;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 400px; /* Set a max-width to limit the width of the form */
+  width: 100%; /* Ensure the form fills the available width */
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
+}
+
+.button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

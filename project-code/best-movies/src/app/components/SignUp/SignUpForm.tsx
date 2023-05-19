@@ -43,12 +43,10 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
-        <img
-          className={styles.image}
-          src="https://images6.alphacoders.com/857/857790.jpg"
-          alt="Background"
-        />
+        <div className={styles.imageBlur}>
+        </div>
       </div>
+
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.card}>
