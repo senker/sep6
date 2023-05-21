@@ -5,7 +5,7 @@ import styles from "../../page.module.scss";
 import CardList from "../CardList/CardList";
 import SearchBox from "../SearchBar/SearchBar";
 import Header from "../Header/Header";
-import axios from "axios";
+import axios, { all } from "axios";
 
 
 const MainPage:React.FC = () =>  {
@@ -47,20 +47,19 @@ const TRENDING_MOVIES_URL = `https://api.themoviedb.org/3/trending/movie/week?ap
       });
   };
 
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const query = event.target.value;
-    if (query === "") {
+  const handleSearchChange = (searchTerm: string) => {
+    if (searchTerm === "") {
       setTrendingMovies(allTrendingMovies); // Reset the movies to all trending movies
     } else {
-      searchMovies(query);
+      searchMovies(searchTerm);
     }
-  };
+  }
 
   return (
     <div className={styles.body}>
-      <SearchBox onChangeHandler={handleSearchChange}
-      />
-      <Header onSearch={searchMovies} />
+      {/* <SearchBox onChangeHandler={handleSearchChange}
+      /> */}
+      <Header onSearch={handleSearchChange} initialMovies={allTrendingMovies}/>
       <CardList cards={trendingMovies} />
     </div>
   );

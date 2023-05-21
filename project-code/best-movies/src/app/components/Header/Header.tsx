@@ -2,9 +2,11 @@
 import Link from "next/link";
 import styles from "./Header.module.scss"
 import SearchBar from "../SearchBar/SearchBar";
+import { Movie } from "@/types/movie.dto";
 
 interface HeaderProps {
   onSearch: (searchTerm: string) => void;
+  initialMovies: Movie[];
 }
 
 const Header: React.FC<HeaderProps> = ({ onSearch }) => {
