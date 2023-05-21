@@ -17,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <Header />
+          {/*<Header />*/}
           <div className={styles.mainDiv}>
             <main>{children}</main>
           </div>
