@@ -1,12 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Bigelow+Rules&family=Open+Sans:wght@300&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,700&display=swap');
 
 .header {
-  position: sticky;
-  width: 100%;
+  position: fixed;
   top: 0;
   left: 0;
   background: transparent;
+  width: 100%;
   z-index: 100;
+}
+
+.scrolled {
+  background: rgba(0, 0, 0, 0.98);
+  transition: all 0.5s cubic-bezier(0.42, 0, 0.58, 1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.notScrolled {
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1);
 }
 
 .navbar {
@@ -15,7 +26,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0 3.5rem;
-  margin-bottom: 25px;
+  margin-bottom: 2rem;
   margin: 0 auto;
   //background-color: black;
 
