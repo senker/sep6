@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Bigelow+Rules&family=Open+Sans:wght@300&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,700&display=swap');
 
 .header {
-  left: 0;
-  position: absolute;
-  top: 0;
+  position: sticky;
   width: 100%;
+  top: 0;
+  left: 0;
+  background: transparent;
+  z-index: 100;
 }
 
 .navbar {
@@ -12,21 +14,22 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  padding: 0 3.5rem;
   margin-bottom: 25px;
-  margin: 0px;
-  background-color: black;
+  margin: 0 auto;
+  //background-color: black;
 
   .logo {
     display: table-caption;
     letter-spacing: 0.02em;
     line-height: 18px;
     width: 10px;
-    margin: 15px 0px 0px 32px;
+    margin-top: 15px;
     text-transform: uppercase;
     color: aliceblue;
     text-decoration: none;
-    font-family: 'Roboto Condensed';
-    font-size: 20px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px;
     font-weight: 700;
   }
 
@@ -34,6 +37,7 @@
     width: 50%;
     height: 100%;
     display: flex;
+    gap: 2rem;
     align-items: center;
     justify-content: flex-end;
 

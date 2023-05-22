@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "./Header.module.scss"
 import SearchBar from "../SearchBar/SearchBar";
 import { Movie } from "@/types/movie.dto";
+import {useEffect, useState} from "react";
 
 interface HeaderProps {
   onSearch: (searchTerm: string) => void;
@@ -17,10 +18,28 @@ const Header: React.FC<HeaderProps> = ({ onSearch }) => {
     onSearch(searchTerm);
   };
 
+  // const [isScrolled, setIsScrolled] = useState(false);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if (window.scrollY > 0) {
+  //       setIsScrolled(true);
+  //     } else {
+  //       setIsScrolled(false);
+  //     }
+  //   };
+  //
+  //   window.addEventListener("scroll", handleScroll);
+  //
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
+
   return (
     <header className={styles.header}>
       <nav className={styles.navbar}>
         <Link href="/" className={styles.logo}>Best Movies</Link>
+
         <div className={styles.container}>
           <SearchBar 
             placeholder="Search for movies"

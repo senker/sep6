@@ -1,4 +1,18 @@
+//.mainDiv {
+//    margin: 70px 0px 0px 0px;
+//}
 
-.mainDiv {
-    margin: 70px 0px 0px 0px;
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
 }
