@@ -1,6 +1,12 @@
 import { getServerSession } from "next-auth";
 import MainPage from "./components/Home/MainPage";
 import { authOptions } from "./api/auth/[...nextauth]/route";
+import { Roboto } from "@next/font/google"
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+})
 
 async function getTestUser() {
   // TODO - use dynamically fetched email
@@ -23,7 +29,7 @@ export default async function Home() {
   console.log(testUser);
 
   return (
-    <main>
+    <main className={roboto.className}>
       {/*<div>Hello, {testUser?.name}</div>*/}
       {/*<pre>{JSON.stringify(session)}</pre>*/}
       <MainPage />
