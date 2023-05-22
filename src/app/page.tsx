@@ -24,10 +24,9 @@ export default async function Home() {
 
   return (
     <main>
-        hello git
       {/*<div>Hello, {testUser?.name}</div>*/}
       {/*<pre>{JSON.stringify(session)}</pre>*/}
-      {/*<MainPage />*/}
+      <MainPage />
     </main>
   );
 }

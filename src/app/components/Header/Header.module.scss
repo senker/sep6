@@ -5,6 +5,28 @@
   position: absolute;
   top: 0;
   width: 100%;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover:before {
+    opacity: 0;
+  }
 }
 
 .navbar {
@@ -14,7 +36,7 @@
   justify-content: space-between;
   margin-bottom: 25px;
   margin: 0px;
-  background-color: black;
+}
 
   .logo {
     display: table-caption;
@@ -24,10 +46,17 @@
     margin: 15px 0px 0px 32px;
     text-transform: uppercase;
     color: aliceblue;
-    text-decoration: none;
+    transition: opacity 350ms ease-out;
+    z-index: 99;
+
     font-family: 'Roboto Condensed';
+    text-decoration: none;
     font-size: 20px;
     font-weight: 700;
+  }
+
+  .logo:hover {
+    opacity: 1;
   }
 
   .container {
@@ -39,10 +68,27 @@
 
     .link {
       color: aliceblue;
-      padding: 10px 15px;
+      padding: 10px 30px 10px 5px;
       cursor: pointer;
       text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 350ms ease-out;
+      z-index: 99;
+
+      font-size: 15px;
+      letter-spacing: 0.04em;
       font-family: 'Roboto Condensed';
     }
+
+    .link:hover {
+      opacity: 1;
+    }
   }
+
+.separator {
+  background-color: aliceblue;
+  height: 30px;
+  margin: 0px 10px 0px 10px;
+  opacity: 0.25;
+  width: 1px;
 }

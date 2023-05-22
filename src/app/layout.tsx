@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import Header from "./components/Header/Header";
 import { Providers } from "./providers";
@@ -17,7 +18,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          {/*<Header />*/}
+          <Header onSearch={function (searchTerm: string): void {
+            throw new Error("Function not implemented.");
+          } } initialMovies={[]} />
           <div className={styles.mainDiv}>
             <main>{children}</main>
           </div>
