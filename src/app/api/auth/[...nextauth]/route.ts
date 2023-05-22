@@ -8,7 +8,8 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt'
   },
   providers: [
-    CredentialsProvider({
+    process.env.VERCEL_ENV === "preview"
+    ? CredentialsProvider({
       name: 'Sign in',
       credentials: {
         email: {
