@@ -13,6 +13,11 @@ import Row from "@/app/components/Row/Row";
 import Modal from "@/app/components/Modal/Modal";
 import Banner from "../app/components/Banner/Banner"
 import styles from './page.module.scss'
+import {Movie} from "@/utils/typings";
+
+interface MovieList {
+    results: Movie[];
+}
 
 async function getTestUser() {
   // // TODO - use dynamically fetched email
@@ -34,7 +39,7 @@ export default async function Home() {
   // const testUser = await getTestUser();
   // console.log(testUser);
 
-    const [trendingMovies] = await Promise.all([getTrendingMoviesThisWeek()]);
+    const [trendingMovies]  = await Promise.all([getTrendingMoviesThisWeek()]);
     const [netflixOriginals] = await Promise.all([getNetflixOriginals()]);
     const [topRated] = await Promise.all([getTopRated()]);
     const [actionMovies] = await Promise.all([getActionMovies()]);
