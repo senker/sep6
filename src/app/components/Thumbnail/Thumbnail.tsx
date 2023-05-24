@@ -1,6 +1,6 @@
-import {Movie} from "@/utils/typings";
 import {modalState, movieState} from "../../atoms/modalAtom";
 import styles from './Thumbnail.module.scss'
+import {Movie} from "@/types/movieFull.dto";
 
 import Image from "next/image";
 import {useRecoilState} from "recoil";

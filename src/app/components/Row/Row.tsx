@@ -1,17 +1,17 @@
 'use client'
 
-import {Movie} from "@/utils/typings";
+import {Movie} from "@/types/movieFull.dto";
 import Thumbnail from "../Thumbnail/Thumbnail";
 import styles from "./Row.module.scss";
 
 import {ChevronLeftIcon, ChevronRightIcon} from "@heroicons/react/outline";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
+import { SYMBOL_MODIFY_COOKIE_VALUES } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 
 interface Props {
     title: string;
-    movies: {
-        results: Movie[];
-    };
+    movies: Movie[];
+    
 }
 
 function Row({title, movies}: Props) {
@@ -48,6 +48,8 @@ function Row({title, movies}: Props) {
     //     rightButton.style.opacity = "0";
     // }
 
+    if(!movies?.length) return <>loading</>
+
     return (
         <div className={styles.row_container}>
             <h2 className={styles.row_container_title}>
@@ -60,7 +62,7 @@ function Row({title, movies}: Props) {
                     onClick={() => handleClick("left")}
                 />
                 <div ref={rowRef} className={styles.row_container_movies_list}>
-                    {movies.results.map((movie) => (
+                    {movies?.map((movie) => (
                         <Thumbnail key={movie.id} movie={movie}/>
                     ))}
                 </div>
