@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcrypt";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 
@@ -12,11 +11,8 @@ export async function GET(
 ): Promise<NextResponse> {
   try {
     const session = await getServerSession(authOptions);
-
-    const { searchParams } = new URL(request.url);
     const email = JSON.stringify(session?.user?.email);
     var cleanedString = email.replace(/"/g, '');
-    console.log('LOGGED CLEANED STRING', cleanedString)
 
     // Check if email is provided
     if (!email) {
