@@ -15,7 +15,7 @@ export default async function HomePage() {
 
       return (
       <main>
-        <pre>{JSON.stringify(session?.user?.email)}</pre>
+        <pre>{JSON.stringify(session)}</pre>
       </main>
       );
     </div>
