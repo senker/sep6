@@ -1,0 +1,119 @@
+.row_container {
+  height: 10rem;
+  width: 90vw;
+}
+
+.row_container_chevron_left {
+  background: aliceblue;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 2rem;
+  z-index: 40;
+  margin: auto;
+  height: 2.25rem;
+  width: 2.25rem;
+  cursor: pointer;
+  opacity: 0;
+  transition-property: all;
+  transition-duration: 0.3s;
+}
+
+.row_container_chevron_left:hover {
+  transform: scale(1.25);
+  opacity: 1;
+}
+
+.row_container_title {
+  cursor: pointer;
+  margin-left: -0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  z-index: 120;
+  color: #e5e5e5;
+  transition-duration: 200ms;
+  transition-property: color;
+}
+
+.row_container_title:hover {
+  color: #fff;
+}
+
+.row_container_inner {
+  position: relative;
+  margin-left: -1rem;
+}
+
+.row_container_inner:hover {
+  .row_container_left_button:hover,
+  .row_container_right_button:hover {
+    //height: 7.2rem;
+    //width: 4rem;
+    //background: rgb(0, 0, 0, 0.5);
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+.row_container_left_button,
+.row_container_right_button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 40;
+  margin: auto;
+  height: 2.25rem;
+  width: 2.25rem;
+  cursor: pointer;
+  opacity: 0;
+  //border: 1px solid #070707;
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.row_container_left_button {
+  left: 1rem;
+}
+
+.row_container_right_button {
+  right: 1rem;
+}
+
+//.row_container_right_button {
+//  position: absolute;
+//  top: 0;
+//  bottom: 0;
+//  right: 1rem;
+//  z-index: 40;
+//  margin: auto;
+//  height: 2.25rem;
+//  width: 2.25rem;
+//  cursor: pointer;
+//  opacity: 0;
+//  transition: transform 200ms ease, opacity 200ms ease-in-out;
+//}
+
+
+.row_container_movies_list {
+  display: flex;
+  align-items: center;
+  //margin-left: 0.125rem;
+  //margin-right: 0.125rem;
+  overflow-x: scroll;
+  padding: 0.5rem;
+}
+
+.row_container_movies_list > *:not(:last-child) {
+  margin-right: calc(0.5 * 1rem);
+  @media (min-width: 768px) {
+    margin-right: 0.8rem;
+
+  }
+}
+
+.row_container_movies_list::-webkit-scrollbar {
+  display: none;
+}
+
+.hidden {
+  visibility: hidden;
+}
