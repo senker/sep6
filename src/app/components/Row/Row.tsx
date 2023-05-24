@@ -5,8 +5,7 @@ import Thumbnail from "../Thumbnail/Thumbnail";
 import styles from "./Row.module.scss";
 
 import {ChevronLeftIcon, ChevronRightIcon} from "@heroicons/react/outline";
-import {useEffect, useRef, useState} from "react";
-import { SYMBOL_MODIFY_COOKIE_VALUES } from "next/dist/server/web/spec-extension/adapters/request-cookies";
+import {useRef, useState} from "react";
 
 interface Props {
     title: string;
@@ -18,7 +17,7 @@ function Row({title, movies}: Props) {
     const rowRef = useRef<HTMLDivElement>(null);
     const [isMoved, setIsMoved] = useState(false);
 
-    console.log(title)
+    // console.log(title)
     const handleClick = (direction: string) => {
         setIsMoved(true);
 
@@ -33,22 +32,6 @@ function Row({title, movies}: Props) {
             rowRef.current.scrollTo({left: scrollTo, behavior: "smooth"});
         }
     };
-
-    // function handleOpacityON() {
-    //     const leftButton = document.querySelector(`#row_container_left_button`);
-    //     const rightButton = document.querySelector(`#row_container_left_button`);
-    //     leftButton.style.opacity = "1";
-    //     rightButton.style.opacity = "1";
-    // }
-    //
-    // function handleOpacityOFF() {
-    //     const leftButton = document.querySelector(`#row_container_right_button`);
-    //     const rightButton = document.querySelector(`#row_container_right_button`);
-    //     leftButton.style.opacity = "0";
-    //     rightButton.style.opacity = "0";
-    // }
-
-    if(!movies?.length) return <>loading</>
 
     return (
         <div className={styles.row_container}>

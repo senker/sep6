@@ -1,13 +1,3 @@
-import { getServerSession } from "next-auth";
-import MainPage from "./components/Home/MainPage";
-import { authOptions } from "./api/auth/[...nextauth]/route";
-import { Roboto } from "@next/font/google";
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
 import {
   getActionMovies,
   getComedyMovies,
