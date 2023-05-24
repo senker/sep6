@@ -3,7 +3,6 @@
 import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import {PlayIcon, PlusIcon} from "@heroicons/react/solid";
-
 import {Movie} from "@/utils/typings";
 import styles from "./Banner.module.scss"
 import {modalState, movieState} from "@/app/atoms/modalAtom";

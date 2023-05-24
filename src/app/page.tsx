@@ -25,26 +25,7 @@ interface MovieList {
     results: Movie[];
 }
 
-async function getTestUser() {
-  // // TODO - use dynamically fetched email
-  // const res = await fetch(
-  //   `${process.env.BASE_URL}/api/user?email=dp@email.com`,
-  //   {
-  //     cache: "no-cache",
-  //   }
-  // );
-  // if (!res.ok) {
-  //   // TODO - handle error better
-  //   console.log(res);
-  // }
-  // return res.json();
-}
-
 export default async function Home() {
-  // const session = await getServerSession(authOptions);
-  // const testUser = await getTestUser();
-  // console.log(testUser);
-
     const [trendingMovies]  = await Promise.all([getTrendingMoviesThisWeek()]);
     const [netflixOriginals] = await Promise.all([getNetflixOriginals()]);
     const [topRated] = await Promise.all([getTopRated()]);
@@ -53,15 +34,6 @@ export default async function Home() {
     const [horrorMovies] = await Promise.all([getHorrorMovies()]);
     const [romanceMovies] = await Promise.all([getRomanceMovies()]);
     const [documentaires] = await Promise.all([getDocumentaries()]);
-
-    // return (
-    //     <main>
-    //
-    //         <div>Hello, {testUser?.name}</div>
-    //         <pre>{JSON.stringify(session)}</pre>
-    //         <MainPage />
-    //     </main>
-    // );
 
   return (
       <>
@@ -86,10 +58,5 @@ export default async function Home() {
           </main>
           <Modal/>
       </>
-    <main className={roboto.className}>
-      {/*<div>Hello, {testUser?.name}</div>*/}
-      {/*<pre>{JSON.stringify(session)}</pre>*/}
-      <MainPage />
-    </main>
   );
 }
