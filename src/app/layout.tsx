@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Providers } from "./providers";
+import { Providers } from "@/providers/providers";
 import { RecoilContext } from "@/context/recoilContext";
 
 import Header from "./components/Header/Header";
