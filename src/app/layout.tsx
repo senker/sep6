@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 
 import {Providers} from "./providers";
@@ -12,6 +13,7 @@ export const metadata = {
     title: "Best Movies | Your movie provider",
     description: "Eyes flickin` good",
 };
+
 
 export default function RootLayout({
                                        children,
@@ -28,6 +30,12 @@ export default function RootLayout({
                     <main>{children}</main>
                 </div>
             </RecoilContext>
+          <Header onSearch={function (searchTerm: string): void {
+            throw new Error("Function not implemented.");
+          } } initialMovies={[]} />
+          <div className={styles.mainDiv}>
+            <main>{children}</main>
+          </div>
         </Providers>
         </body>
         </html>

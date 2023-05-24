@@ -3,17 +3,16 @@ import React, { useState, useEffect } from "react";
 import { Movie } from "@/types/movie.dto";
 import styles from "../../page.module.scss";
 import CardList from "../CardList/CardList";
-import SearchBox from "../SearchBar/SearchBar";
 import Header from "../Header/Header";
-import axios, { all } from "axios";
+import axios from "axios";
 
 
 const MainPage:React.FC = () =>  {
 
 const TRENDING_MOVIES_URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
 
-  const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
-  const [allTrendingMovies, setAllTrendingMovies] = useState<Movie[]>([]);
+const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
+const [allTrendingMovies, setAllTrendingMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
     fetch(TRENDING_MOVIES_URL)
@@ -57,8 +56,6 @@ const TRENDING_MOVIES_URL = `https://api.themoviedb.org/3/trending/movie/week?ap
 
   return (
     <div className={styles.body}>
-      {/* <SearchBox onChangeHandler={handleSearchChange}
-      /> */}
       <Header onSearch={handleSearchChange} initialMovies={allTrendingMovies}/>
       <CardList cards={trendingMovies} />
     </div>
