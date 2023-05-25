@@ -67,3 +67,13 @@
   max-width: 320px;
   width: 320px;
 }
+
+.sign_in_background_image {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}

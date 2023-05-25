@@ -18,11 +18,19 @@
     z-index: 1;
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
 }
 
-// .sign_up_background_image {
+.sign_up_background_image {
+    position: fixed;
+    top: 0;
+    left: 0;
 
-// }
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+}
 
 .sign_up_content_container {
     background-color: rgba(0, 0, 0, 0.75);
@@ -48,7 +56,7 @@
     margin-bottom: 1.5rem;
 }
 
-.sign_up_container {
+.p_sign_up_container {
     color: rgba(255, 255, 255, 0.56);
     font-size: 14px;
     font-weight: 400;

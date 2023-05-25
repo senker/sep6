@@ -63,7 +63,7 @@ export default function SignUpPage() {
             <div className={styles.sign_up_max_width}>
               <p className={styles.sign_up_title}>Sign Up</p>
               <SignUpForm onSubmit={handleSignUp} />
-              <p className={styles.sign_up_container}>
+              <p className={styles.p_sign_up_container}>
                 Already on Best Movies?{" "}
                 <Link href="/auth/sign-in" className={styles.sign_in_link}>
                   Sign in now <span className={styles.sign_in_dot}>.</span>
