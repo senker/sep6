@@ -11,10 +11,10 @@ import { SYMBOL_MODIFY_COOKIE_VALUES } from "next/dist/server/web/spec-extension
 interface Props {
     title: string;
     movies: Movie[];
-    
+    loadingMessage?: string; 
 }
 
-function Row({title, movies}: Props) {
+function Row({title, movies, loadingMessage='Loading...'}: Props) {
     const rowRef = useRef<HTMLDivElement>(null);
     const [isMoved, setIsMoved] = useState(false);
 
@@ -48,7 +48,9 @@ function Row({title, movies}: Props) {
     //     rightButton.style.opacity = "0";
     // }
 
-    if(!movies?.length) return <>loading</>
+    if (!movies?.length) {
+        return <p>{loadingMessage}</p>; // Use the provided loading message prop
+      }
 
     return (
         <div className={styles.row_container}>

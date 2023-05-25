@@ -2,10 +2,10 @@ import React from 'react';
 import styles from "./SearchBar.module.scss"
 import { SearchBoxProps } from '@/types/searchBoxProps.dto';
 
-const SearchBox: React.FC<SearchBoxProps> = ({ placeholder, onChangeHandler }) => {
+const SearchBox: React.FC<SearchBoxProps> = ({ className, placeholder, onChangeHandler }) => {
   return (
     <input 
-      className={styles.searchBar}
+      className={className}
       placeholder={placeholder}
       onChange={onChangeHandler}
       type="search"
