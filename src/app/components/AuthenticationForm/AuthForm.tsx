@@ -4,7 +4,6 @@ import React from "react";
 import styles from './AuthForm.module.scss';
 import {signIn} from "next-auth/react";
 import {useRouter, useSearchParams} from "next/navigation";
-import toast, {Toaster} from "react-hot-toast";
 
 interface FormElements extends HTMLFormControlsCollection {
     emailInput: HTMLInputElement;

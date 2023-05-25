@@ -4,8 +4,6 @@ import React from 'react';
 import styles from './index.module.scss';
 import Link from "next/link";
 import AuthForm from "@/app/components/AuthenticationForm/AuthForm";
-import Header from "@/app/components/Header/Header";
-
 
 function LoginPage() {
     return (

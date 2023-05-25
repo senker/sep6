@@ -1,77 +1,109 @@
-.container {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 220px;
-  height: 90vh; /* Add margin to the left and right of the container */
+.sign_up_form {
+  display: grid;
+  gap: 24px;
 }
 
-.imageContainer {
-  flex: 1;
+.sign_up_form_input_container {
+  position: relative;
 }
 
-.imageBlur {
-  background-image: url("https://images6.alphacoders.com/857/857790.jpg");
-  width: 85%; /* Adjust the width of the image as desired */
-  height: 100%;
-  margin-top: 55px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  position: relative; /* Position relative for the fade effect */
-  box-shadow: 0 20px 20px 20px white inset;
+.sign_up_form_input {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: .25rem;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  padding: 16px;
+  width: 100%;
 }
 
-.body {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.sign_up_form_input:focus {
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-.formContainer {
-  flex: 0.3;
+.sign_up_form_input:focus + .sign_up_form_input_label {
+  opacity: 1;
+  transition: opacity 350ms ease-in-out;
+  transform: scale(1, 1) translateY(-50%);
+}
+
+.sign_up_form_input:not(:placeholder-shown) + .sign_up_form_input_label {
+  opacity: 1;
+  transition: opacity 350ms ease-in-out;
+  transform: scale(1, 1) translateY(-50%);
+}
+
+.sign_up_form_input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.sign_up_form_input:focus::placeholder{
+  opacity: 0;
+  transition: opacity 350ms ease-in-out;
+}
+
+.sign_up_form_input_label {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 500;
+  font-size: 11px;
+  left: -8px;
+  opacity: 0;
+  padding: 8px;
+  position: absolute;
+  top: -10px;
+  transform: scale(0.5, 0.5);
+  transition: opacity 350ms ease, transform 350ms ease;
+}
+
+.form_button_container {
+  margin-top: 1rem;
+}
+
+.form_button {
+  cursor: pointer;
+  width: 100%;
+  color: #070707;
+  gap: .5rem;
+  font-size: 1rem;
+  padding: .75rem 2rem;
+  border-radius: .25rem;
+  font-weight: bolder;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90vh; /* Set the height of the container */
+  position: relative;
+  transition: ease-in-out .3s;
 }
 
-.form {
-  background-color: gray;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 400px; /* Set a max-width to limit the width of the form */
-  width: 100%; /* Ensure the form fills the available width */
-}
-
-.title {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.input {
-  width: 90%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+.form_button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  box-shadow: 0 5px 11px rgba(0, 0, 0, 0.25);
 }
 
 .error {
-  color: red;
-  margin-top: 5px;
+  font-size: 14px;
+  margin-top: 2.5rem;
+  position: fixed;
+  background: rgba(204, 0, 0, 0.75);
+  width: 320px;
+  color: white;
+  border-radius: .25rem;
+  padding: .25rem .5rem;
+  transition: all cubic-bezier(0.23, 1, 0.32, 1) .3s;
 }
 
-.button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.no_error {
+  font-size: 14px;
+  position: fixed;
+  width: 320px;
+  background: transparent;
+  color: transparent;
+  transition: all cubic-bezier(0.68, 0, 0.77, 0.77) .3s;
 }
+
