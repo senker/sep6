@@ -123,16 +123,7 @@ function Modal() {
 
   const handleList = async () => {
     if (movieList.includes(movie.id)) {
-      //     await fetch("/api/deleteMedia", {
-      //       body: JSON.stringify({
-      //         userId: user!.uid,
-      //         mediaId: movie?.id,
-      //         mediaType: movie?.media_type ?? "movie",
-      //       }),
-      //       headers: { "Content-Type": "application/json" },
-      //       method: "POST",
-      //     });
-      //
+
       console.log(movieList);
       console.log(JSON.stringify(movie.id));
       const movieIdToRemove = movie.id;
@@ -170,27 +161,25 @@ function Modal() {
         }
       );
     } else {
-      //     await setDoc(
-      //       doc(db, "customers", user!.uid, "myList", movie?.id.toString()!),
-      //       { ...movie }
-      //     );
-      //
-      //     console.table({
-      //       userId: user!.uid,
-      //       movieId: movie?.id,
-      //       mediaType: movie?.media_type,
-      //       imageUrl: movie?.backdrop_path ?? "",
-      //     });
-      //
-      //     await fetch("/api/addMovieToList", {
-      //       body: JSON.stringify({
-      //         userId: user!.uid,
-      //         movieId: movie?.id,
-      //         mediaType: movie?.media_type ?? "movie",
-      //         imageUrl: movie?.backdrop_path ?? "",
-      //       }),
-      //       headers: { "Content-Type": "application/json" },
-      //       method: "POST",
+      const movieIdToAdd = movie.id;
+      const addToFavourites = async (userId, movieIdToAdd) => {
+        const response = await fetch('/api/favourites/addFavourites', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId,
+            movieIdToAdd,
+          }),
+        });
+      
+        const responseData = await response.json();
+        console.log(responseData.data.favourites);
+      };
+    
+      addToFavourites(parseInt(userId), movieIdToAdd)
+
       toast(
         `"${
           fetchedMovie?.title || fetchedMovie?.original_name
