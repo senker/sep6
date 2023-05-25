@@ -1,45 +1,18 @@
-.form {
+.auth_form {
   display: grid;
   gap: 24px;
 }
 
-.inputContainer {
+.auth_form_input_container {
   position: relative;
 }
 
-.inputLabelPicture {
-  display: block;
-  margin-bottom: 20px;
-}
-
-.imagesContainer {
-  display: flex;
-  justify-content: space-between;
-}
-
-.imagePlacholder {
-  border-radius: 50%;
-  height: 40px;
-  overflow: hidden;
-  width: 40px;
-}
-
-.imagePlacholder > img {
-  height: 100%;
-  object-fit: cover;
-  width: 100%;
-}
-
-.imagePlacholderActive {
-  outline: 5px solid #ffffff;
-}
-
-.input {
+.auth_form_input {
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: .25rem;
   color: #ffffff;
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 500;
   outline: none;
@@ -47,21 +20,26 @@
   width: 100%;
 }
 
-.input:focus {
+.auth_form_input:focus {
   border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-.input:focus + .inputLabel {
+.auth_form_input:focus + .auth_form_input_label {
   opacity: 1;
+  transition: opacity 350ms ease-in-out;
   transform: scale(1, 1) translateY(-50%);
 }
 
-.input::placeholder {
+.auth_form_input::placeholder {
   color: rgba(255, 255, 255, 0.35);
 }
 
-.inputLabel {
-  /*background-color: rgba(0, 0, 0, 0.75);*/
+.auth_form_input:focus::placeholder{
+  opacity: 0;
+  transition: opacity 350ms ease-in-out;
+}
+
+.auth_form_input_label {
   color: rgba(255, 255, 255, 0.5);
   font-weight: 500;
   font-size: 11px;
@@ -72,14 +50,6 @@
   top: -10px;
   transform: scale(0.5, 0.5);
   transition: opacity 350ms ease, transform 350ms ease;
-}
-
-.inputLabelPicture {
-  color: rgba(255, 255, 255, 0.5);
-  font-family: 'Inter';
-  font-size: 11px;
-  font-weight: 500;
-  margin-bottom: 20px;
 }
 
 .form_button_container {
@@ -108,4 +78,12 @@
   background-color: rgba(255, 255, 255, 0.1);
   color: white;
   box-shadow: 0 5px 11px rgba(0, 0, 0, 0.25);
+}
+
+.sign_in_error {
+  background: #cc0000;
+  color: white;
+  border-radius: .25rem;
+  padding: .25rem .5rem;
+  transition: all ease-in-out .3s;
 }

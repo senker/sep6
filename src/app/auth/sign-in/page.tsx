@@ -7,9 +7,6 @@ import AuthForm from "@/app/components/AuthenticationForm/AuthForm";
 
 
 function LoginPage() {
-    // const username = useRef("")
-    // const password = useRef("")
-
     return (
         <>
             <div className={styles.sign_in_container}>
