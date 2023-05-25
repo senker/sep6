@@ -63,3 +63,7 @@ export const getDocumentaries = async (): Promise<PaginatedMovies> =>
       next: { revalidate: 3600 },
     }
   ).then((res) => res.json());
+
+export const getSearchedMovies = async (query: string): Promise<PaginatedMovies> =>
+    await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${encodeURIComponent(query)}`).
+        then((res) => res.json());
