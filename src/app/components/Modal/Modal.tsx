@@ -122,14 +122,17 @@ function Modal() {
   // );
 
   const handleList = async () => {
-    if (movieList.includes(movie.id)) {
+    console.log(movieList);
+    console.log(JSON.stringify(movie.id));
+    if (movieList.includes(movie.id) && typeof userId === "number"    ) {
 
       console.log(movieList);
       console.log(JSON.stringify(movie.id));
       const movieIdToRemove = movie.id;
       console.log(userId);
+      
 
-      const removeFavourite = async (userId, movieIdToRemove) => {
+      const removeFavourite = async (userId: number, movieIdToRemove: number) => {
         const response = await fetch("/api/favourites/removeFavourites", {
           method: "POST",
           headers: {
@@ -150,7 +153,7 @@ function Modal() {
       };
 
       // Call the function with the appropriate userId and movieIdToRemove
-      removeFavourite(parseInt(userId, 10), movieIdToRemove);
+      removeFavourite(userId, movieIdToRemove);
 
       toast(
         `"${
@@ -160,9 +163,9 @@ function Modal() {
           duration: 8000,
         }
       );
-    } else {
+    } else if (!movieList.includes(movie.id) && typeof userId === "number") {
       const movieIdToAdd = movie.id;
-      const addToFavourites = async (userId, movieIdToAdd) => {
+      const addToFavourites = async (userId: number, movieIdToRemove: number) => {
         const response = await fetch('/api/favourites/addFavourites', {
           method: 'POST',
           headers: {
@@ -178,7 +181,7 @@ function Modal() {
         console.log(responseData.data.favourites);
       };
     
-      addToFavourites(parseInt(userId), movieIdToAdd)
+      addToFavourites(userId, movieIdToAdd)
 
       toast(
         `"${
