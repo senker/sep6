@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import XIcon from "@heroicons/react/outline/XIcon";
-import { PlusIcon, VolumeOffIcon } from "@heroicons/react/solid";
-import { CheckIcon, VolumeUpIcon } from "@heroicons/react/outline";
+import {PlusIcon, VolumeOffIcon} from "@heroicons/react/solid";
+import {CheckIcon, VolumeUpIcon} from "@heroicons/react/outline";
 import MuiModal from "@mui/material/Modal";
-import toast, { Toaster } from "react-hot-toast";
-import { useRecoilState } from "recoil";
+import toast, {Toaster} from "react-hot-toast";
+import {useRecoilState} from "recoil";
 import ReactPlayer from "react-player/lazy";
 import styles from "./Modal.module.scss";
 import { modalState, movieState } from "@/app/atoms/modalAtom";
@@ -21,9 +21,6 @@ import { useCustomSession } from "../../../hooks/useCustomSession";
 
 function Modal() {
   const [showModal, setShowModal] = useRecoilState(modalState);
-  // const { user } = useAuth();
-  // const [movies, setMovies] = useState<Movie[]>([]);
-  // const [cast, setCast] = useState<Cast[]>();
 
   const [fetchedMovie, setFetchedMovie] = useState<Movie>();
   const [movie, setMovie] = useRecoilState(movieState);

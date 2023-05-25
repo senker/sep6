@@ -22,19 +22,11 @@ export default function RootLayout({
       <body>
         <Providers>
           <RecoilContext>
-            {/*                 <Header onSearch={function (searchTerm: string): void {
-                            throw new Error("Function not implemented.");
-                        } } initialMovies={[]}/> */}
+            <Header />
             <div className={styles.mainDiv}>
               <main>{children}</main>
             </div>
           </RecoilContext>
-          {/* <Header onSearch={function (searchTerm: string): void {
-            throw new Error("Function not implemented.");
-          } } initialMovies={[]} /> */}
-          {/* <div className={styles.mainDiv}>
-            <main>{children}</main>
-          </div> */}
         </Providers>
       </body>
     </html>

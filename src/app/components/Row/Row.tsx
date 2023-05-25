@@ -10,10 +10,10 @@ import {useRef, useState} from "react";
 interface Props {
     title: string;
     movies: Movie[];
-    
+    loadingMessage?: string; 
 }
 
-function Row({title, movies}: Props) {
+function Row({title, movies, loadingMessage='Loading...'}: Props) {
     const rowRef = useRef<HTMLDivElement>(null);
     const [isMoved, setIsMoved] = useState(false);
 
@@ -32,6 +32,24 @@ function Row({title, movies}: Props) {
             rowRef.current.scrollTo({left: scrollTo, behavior: "smooth"});
         }
     };
+
+    // function handleOpacityON() {
+    //     const leftButton = document.querySelector(`#row_container_left_button`);
+    //     const rightButton = document.querySelector(`#row_container_left_button`);
+    //     leftButton.style.opacity = "1";
+    //     rightButton.style.opacity = "1";
+    // }
+    //
+    // function handleOpacityOFF() {
+    //     const leftButton = document.querySelector(`#row_container_right_button`);
+    //     const rightButton = document.querySelector(`#row_container_right_button`);
+    //     leftButton.style.opacity = "0";
+    //     rightButton.style.opacity = "0";
+    // }
+
+    if (!movies?.length) {
+        return <p>{loadingMessage}</p>; // Use the provided loading message prop
+      }
 
     return (
         <div className={styles.row_container}>
