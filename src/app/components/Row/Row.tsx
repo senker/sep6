@@ -5,8 +5,7 @@ import Thumbnail from "../Thumbnail/Thumbnail";
 import styles from "./Row.module.scss";
 
 import {ChevronLeftIcon, ChevronRightIcon} from "@heroicons/react/outline";
-import {useEffect, useRef, useState} from "react";
-import { SYMBOL_MODIFY_COOKIE_VALUES } from "next/dist/server/web/spec-extension/adapters/request-cookies";
+import {useRef, useState} from "react";
 
 interface Props {
     title: string;
@@ -18,7 +17,7 @@ function Row({title, movies, loadingMessage='Loading...'}: Props) {
     const rowRef = useRef<HTMLDivElement>(null);
     const [isMoved, setIsMoved] = useState(false);
 
-    console.log(title)
+    // console.log(title)
     const handleClick = (direction: string) => {
         setIsMoved(true);
 
