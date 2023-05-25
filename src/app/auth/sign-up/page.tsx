@@ -10,7 +10,7 @@ interface SignUpFormData {
   password: string;
 }
 
-const SignUpForm = dynamic(() => import("../components/SignUp/SignUpForm"), {
+const SignUpForm = dynamic(() => import("../../components/SignUp/SignUpForm"), {
   ssr: false,
 });
 
