@@ -4,6 +4,7 @@ import React from "react";
 import styles from './AuthForm.module.scss';
 import {signIn} from "next-auth/react";
 import {useRouter, useSearchParams} from "next/navigation";
+import toast, {Toaster} from "react-hot-toast";
 
 interface FormElements extends HTMLFormControlsCollection {
     emailInput: HTMLInputElement;
@@ -37,15 +38,17 @@ const AuthForm: React.FC = () => {
             });
 
             if (signInResult?.error) {
+                setError(true);
+                const timeout = setTimeout(() => {
                     setError(false);
+                }, 2000);
+
+                return () => clearTimeout(timeout);
             } else {
                 router.push('/')
             }
-
-            console.log('SignInResult ->', signInResult);
-
+            // console.log('SignInResult ->', signInResult);
         } catch (error: any) {
-
         }
 
         // if (signInResult && !signInResult['error']) router.replace('/profile');
@@ -68,41 +71,45 @@ const AuthForm: React.FC = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className={styles.auth_form}>
-            <div className={styles.auth_form_input_container}>
-                <input
-                    className={styles.auth_form_input}
-                    id="emailInput"
-                    name="email"
-                    placeholder="Email"
-                    spellCheck="false"
-                    type="text"
-                />
-                <label className={styles.auth_form_input_label} htmlFor="email">
-                    Email
-                </label>
-            </div>
-            <div className={styles.auth_form_input_container}>
-                <input
-                    className={styles.auth_form_input}
-                    id="passwordInput"
-                    name="password"
-                    placeholder="Password"
-                    spellCheck="false"
-                    type="password"
-                />
-                <label className={styles.auth_form_input_label} htmlFor="password">
-                    Password
-                </label>
-            </div>
-            {error ? <div className={styles.sign_in_error}>Invalid credentials</div> : null}
-            <div className={styles.form_button_container}>
-                <button
-                    className={styles.form_button}>
-                    Sign In
-                </button>
-            </div>
-        </form>
+        <>
+            <form onSubmit={handleSubmit} className={styles.auth_form}>
+                <div className={styles.auth_form_input_container}>
+                    <input
+                        className={styles.auth_form_input}
+                        id="emailInput"
+                        name="email"
+                        placeholder="Email"
+                        spellCheck="false"
+                        type="text"
+                    />
+                    <label className={styles.auth_form_input_label} htmlFor="email">
+                        Email
+                    </label>
+                </div>
+                <div className={styles.auth_form_input_container}>
+                    <input
+                        className={styles.auth_form_input}
+                        id="passwordInput"
+                        name="password"
+                        placeholder="Password"
+                        spellCheck="false"
+                        type="password"
+                    />
+                    <label className={styles.auth_form_input_label} htmlFor="password">
+                        Password
+                    </label>
+                </div>
+                <div className={styles.form_button_container}>
+                    <button
+                        className={styles.form_button}>
+                        Sign In
+                    </button>
+                    {error ?
+                        <div className={styles.sign_in_error}>Invalid credentials</div> :
+                        <div className={styles.sign_in_no_error}>Invalid credentials</div>}
+                </div>
+            </form>
+        </>
     );
 };
 

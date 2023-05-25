@@ -30,6 +30,12 @@
   transform: scale(1, 1) translateY(-50%);
 }
 
+.auth_form_input:not(:placeholder-shown) + .auth_form_input_label {
+  opacity: 1;
+  transition: opacity 350ms ease-in-out;
+  transform: scale(1, 1) translateY(-50%);
+}
+
 .auth_form_input::placeholder {
   color: rgba(255, 255, 255, 0.35);
 }
@@ -81,9 +87,22 @@
 }
 
 .sign_in_error {
-  background: #cc0000;
+  font-size: 14px;
+  margin-top: 2.5rem;
+  position: fixed;
+  background: rgba(204, 0, 0, 0.75);
+  width: 320px;
   color: white;
   border-radius: .25rem;
   padding: .25rem .5rem;
-  transition: all ease-in-out .3s;
+  transition: all cubic-bezier(0.23, 1, 0.32, 1) .3s;
+}
+
+.sign_in_no_error {
+  font-size: 14px;
+  position: fixed;
+  width: 320px;
+  background: transparent;
+  color: transparent;
+  transition: all cubic-bezier(0.68, 0, 0.77, 0.77) .3s;
 }
