@@ -4,6 +4,7 @@ import Row from "../components/Row/Row";
 import styles from "./Dashboard.module.scss";
 import { Movie } from "@/types/movieFull.dto";
 import { useCustomSession } from "../../hooks/useCustomSession";
+import Modal from "../components/Modal/Modal";
 
 export default function Dashboard() {
   const { data: session } = useCustomSession();
@@ -30,6 +31,7 @@ export default function Dashboard() {
   return (
     <div className={styles.body}>
       <Row title="Favourites" movies={movies} />
+      <Modal />
     </div>
   );
 }
