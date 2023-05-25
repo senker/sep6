@@ -8,29 +8,24 @@ import { useCustomSession } from "../../hooks/useCustomSession";
 export default function Dashboard() {
   const { data: session } = useCustomSession();
   const [movies, setMovies] = useState<Movie[]>([]);
+  const sessionFavourites = session?.user?.favourites;
 
   useEffect(() => {
     async function fetchMovies() {
-      if (
-        session &&
-        session.user?.favourites &&
-        session.user?.favourites.length > 0
-      ) {
-        const moviePromises = session.user?.favourites.map(
-          async (movieId: any) => {
-            const response = await fetch(
-              `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&append_to_response=videos`
-            );
-            return response.json();
-          }
-        );
+      if (sessionFavourites != null) {
+        const moviePromises = sessionFavourites?.map(async (movieId: any) => {
+          const response = await fetch(
+            `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&append_to_response=videos`
+          );
+          return response.json();
+        });
         const fetchedMovies = await Promise.all(moviePromises);
         setMovies(fetchedMovies);
         console.log(movies);
       }
     }
     fetchMovies();
-  }, [session]);
+  }, [sessionFavourites]);
 
   return (
     <div className={styles.body}>
