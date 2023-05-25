@@ -1,13 +1,13 @@
-.sign_up_form {
+.auth_form {
   display: grid;
   gap: 24px;
 }
 
-.sign_up_form_input_container {
+.auth_form_input_container {
   position: relative;
 }
 
-.sign_up_form_input {
+.auth_form_input {
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: .25rem;
@@ -20,32 +20,32 @@
   width: 100%;
 }
 
-.sign_up_form_input:focus {
+.auth_form_input:focus {
   border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-.sign_up_form_input:focus + .sign_up_form_input_label {
+.auth_form_input:focus + .auth_form_input_label {
   opacity: 1;
   transition: opacity 350ms ease-in-out;
   transform: scale(1, 1) translateY(-50%);
 }
 
-.sign_up_form_input:not(:placeholder-shown) + .sign_up_form_input_label {
+.auth_form_input:not(:placeholder-shown) + .auth_form_input_label {
   opacity: 1;
   transition: opacity 350ms ease-in-out;
   transform: scale(1, 1) translateY(-50%);
 }
 
-.sign_up_form_input::placeholder {
+.auth_form_input::placeholder {
   color: rgba(255, 255, 255, 0.35);
 }
 
-.sign_up_form_input:focus::placeholder{
+.auth_form_input:focus::placeholder{
   opacity: 0;
   transition: opacity 350ms ease-in-out;
 }
 
-.sign_up_form_input_label {
+.auth_form_input_label {
   color: rgba(255, 255, 255, 0.5);
   font-weight: 500;
   font-size: 11px;
@@ -86,7 +86,7 @@
   box-shadow: 0 5px 11px rgba(0, 0, 0, 0.25);
 }
 
-.error {
+.sign_in_error {
   font-size: 14px;
   margin-top: 2.5rem;
   position: fixed;
@@ -98,7 +98,7 @@
   transition: all cubic-bezier(0.23, 1, 0.32, 1) .3s;
 }
 
-.no_error {
+.sign_in_no_error {
   font-size: 14px;
   position: fixed;
   width: 320px;
@@ -106,4 +106,3 @@
   color: transparent;
   transition: all cubic-bezier(0.68, 0, 0.77, 0.77) .3s;
 }
-

@@ -1,5 +1,9 @@
+"use client"
+
 import React, { useState } from "react";
 import styles from "./SignUpForm.module.scss";
+import { useRouter } from "next/navigation";
+
 interface SignUpFormProps {
   onSubmit: (formData: SignUpFormData) => void;
 }
@@ -18,6 +22,8 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
   });
   const [repeatPassword, setRepeatPassword] = useState<string>("");
   const [passwordError, setPasswordError] = useState<string>("");
+  const router = useRouter();
+  const [error, setError] = React.useState<boolean>(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -35,72 +41,89 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
     event.preventDefault();
     if (formValues.password !== repeatPassword) {
       setPasswordError("Passwords don't match");
-      return;
+      setError(true);
+      const timeout = setTimeout(() => {
+        setError(false);
+    }, 2000);
+      return () => clearTimeout(timeout);
     }
     onSubmit(formValues);
+    router.push('/')
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.imageContainer}>
-        <div className={styles.imageBlur}>
-        </div>
+    <form onSubmit={handleSubmit} className={styles.sign_up_form}>
+      <div className={styles.sign_up_form_input_container}>
+        <input
+          className={styles.sign_up_form_input}
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Name"
+          value={formValues.name}
+          onChange={handleInputChange}
+          required
+        />
+        <label className={styles.sign_up_form_input_label} htmlFor="name">
+          Name:
+        </label>
       </div>
 
-      <div className={styles.formContainer}>
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.card}>
-            <label htmlFor="name">First Name:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formValues.name}
-              onChange={handleInputChange}
-              required
-              className={styles.input}
-            />
-
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formValues.email}
-              onChange={handleInputChange}
-              required
-              className={styles.input}
-            />
-
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formValues.password}
-              onChange={handleInputChange}
-              required
-              className={styles.input}
-            />
-
-            <label htmlFor="repeatPassword">Repeat Password:</label>
-            <input
-              type="password"
-              id="repeatPassword"
-              name="repeatPassword"
-              value={repeatPassword}
-              onChange={handleInputChange}
-              required
-              className={styles.input}
-            />
-
-            {passwordError && <p className={styles.error}>{passwordError}</p>}
-
-            <input type="submit" value="Register" className={styles.button} />
-          </div>
-        </form>
+      <div className={styles.sign_up_form_input_container}>
+        <input
+          className={styles.sign_up_form_input}
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          value={formValues.email}
+          onChange={handleInputChange}
+          required
+        />
+        <label className={styles.sign_up_form_input_label} htmlFor="email">
+          Email:
+        </label>
       </div>
-    </div>
+      <div className={styles.sign_up_form_input_container}>
+        <input
+          className={styles.sign_up_form_input}
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          value={formValues.password}
+          onChange={handleInputChange}
+          required
+        />
+        <label className={styles.sign_up_form_input_label} htmlFor="password">
+          Password:
+        </label>
+      </div>
+      <div className={styles.sign_up_form_input_container}>
+        <input
+          className={styles.sign_up_form_input}
+          type="password"
+          id="repeatPassword"
+          name="repeatPassword"
+          placeholder="Confirm Password"
+          value={repeatPassword}
+          onChange={handleInputChange}
+          required
+        />
+        <label
+          className={styles.sign_up_form_input_label}
+          htmlFor="repeatPassword"
+        >
+          Confirm Password:
+        </label>
+      </div>
+      <div className={styles.form_button_container}>
+        <button className={styles.form_button}>Register</button>
+        {error ?
+         <div className={styles.error}>{passwordError}</div> : 
+         <div className={styles.no_error}>{passwordError}</div>}
+      </div>
+    </form>
   );
 };
 

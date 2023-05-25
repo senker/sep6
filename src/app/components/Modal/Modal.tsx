@@ -1,29 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import XIcon from "@heroicons/react/outline/XIcon";
-import { PlusIcon, VolumeOffIcon } from "@heroicons/react/solid";
-import { CheckIcon, VolumeUpIcon } from "@heroicons/react/outline";
+import {PlusIcon, VolumeOffIcon} from "@heroicons/react/solid";
+import {CheckIcon, VolumeUpIcon} from "@heroicons/react/outline";
 import MuiModal from "@mui/material/Modal";
-import toast, { Toaster } from "react-hot-toast";
-import { useRecoilState } from "recoil";
+import toast, {Toaster} from "react-hot-toast";
+import {useRecoilState} from "recoil";
 import ReactPlayer from "react-player/lazy";
 
 import styles from "./Modal.module.scss";
-import { modalState, movieState } from "@/app/atoms/modalAtom";
-import { Element } from "@/types/element.dto";
-import { Movie } from "@/types/movieFull.dto";
-import { Genre } from "@/types/genre.dto";
-import { Crew } from "@/types/crew.dto";
-import { MovieCredits } from "@/types/movieCredits.dto";
-import { getNumberWithSpaces } from "@/utils/numbers";
-import { formatDate } from "@/utils/date";
+import {modalState, movieState} from "@/app/atoms/modalAtom";
+import {Element} from "@/types/element.dto";
+import {Movie} from "@/types/movieFull.dto";
+import {Genre} from "@/types/genre.dto";
+import {Crew} from "@/types/crew.dto";
+import {MovieCredits} from "@/types/movieCredits.dto";
+import {getNumberWithSpaces} from "@/utils/numbers";
+import {formatDate} from "@/utils/date";
 
 function Modal() {
   const [showModal, setShowModal] = useRecoilState(modalState);
-  // const { user } = useAuth();
-  // const [movies, setMovies] = useState<Movie[]>([]);
-  // const [cast, setCast] = useState<Cast[]>();
 
   const [fetchedMovie, setFetchedMovie] = useState<Movie>();
   const [movie, setMovie] = useRecoilState(movieState);
