@@ -53,18 +53,15 @@ const Search: React.FC = () => {
             onChangeHandler={handleSearchChange}
           />
           <section className={section.rows}>
-            {/* {movies.length === 0 ? (
-              <p className={styles.p}>No movies found.</p>
-            ) : (
-              <Row title={"Searched movies: "} movies={movies} />
-            )} */}
-
             {searchCompleted && movies.length === 0 ? (
-              <p className={styles.p}>No movies found.</p>
+              <p className={styles.p}>No movies found :(</p>
             ) : (
-              <Row title={"Searched movies: "} movies={movies} loadingMessage="The searched movies will be displayed here ;)"/>
+              <Row
+                title={"Searched movies: "}
+                movies={movies}
+                loadingMessage="The searched movies will be displayed here ;)"
+              />
             )}
-
           </section>
         </div>
       </main>

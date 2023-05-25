@@ -1,65 +1,64 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { Movie } from "@/types/movie.dto";
-import styles from "../../page.module.scss";
-import CardList from "../CardList/CardList";
-import Header from "../Header/Header";
-import axios from "axios";
+// "use client";
+// import React, { useState, useEffect } from "react";
+// import { Movie } from "@/types/movie.dto";
+// import styles from "../../page.module.scss";
+// import Header from "../Header/Header";
+// import axios from "axios";
 
 
-const MainPage:React.FC = () =>  {
+// const MainPage:React.FC = () =>  {
 
-const TRENDING_MOVIES_URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
+// const TRENDING_MOVIES_URL = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
 
-const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
-const [allTrendingMovies, setAllTrendingMovies] = useState<Movie[]>([]);
+// const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
+// const [allTrendingMovies, setAllTrendingMovies] = useState<Movie[]>([]);
 
-  useEffect(() => {
-    fetch(TRENDING_MOVIES_URL)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const trendingMovies = data.results;
-        setTrendingMovies(trendingMovies);
-        setAllTrendingMovies(trendingMovies);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+//   useEffect(() => {
+//     fetch(TRENDING_MOVIES_URL)
+//       .then((response) => {
+//         if (!response.ok) {
+//           throw new Error("Network response was not ok");
+//         }
+//         return response.json();
+//       })
+//       .then((data) => {
+//         const trendingMovies = data.results;
+//         setTrendingMovies(trendingMovies);
+//         setAllTrendingMovies(trendingMovies);
+//       })
+//       .catch((error) => {
+//         console.error(error);
+//       });
+//   }, []);
 
-  const searchMovies = (query: string) => {
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
+//   const searchMovies = (query: string) => {
+//     const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+//     const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
 
-    axios.get(url)
-      .then((response) => {
-        const searchResults = response.data.results;
-        setTrendingMovies(searchResults);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+//     axios.get(url)
+//       .then((response) => {
+//         const searchResults = response.data.results;
+//         setTrendingMovies(searchResults);
+//       })
+//       .catch((error) => {
+//         console.error(error);
+//       });
+//   };
 
-  const handleSearchChange = (searchTerm: string) => {
-    if (searchTerm === "") {
-      setTrendingMovies(allTrendingMovies); // Reset the movies to all trending movies
-    } else {
-      searchMovies(searchTerm);
-    }
-  }
+//   const handleSearchChange = (searchTerm: string) => {
+//     if (searchTerm === "") {
+//       setTrendingMovies(allTrendingMovies); // Reset the movies to all trending movies
+//     } else {
+//       searchMovies(searchTerm);
+//     }
+//   }
 
-  return (
-    <div className={styles.body}>
-      <Header onSearch={handleSearchChange} initialMovies={allTrendingMovies}/>
-      <CardList cards={trendingMovies} />
-    </div>
-  );
-};
+//   return (
+//     <div className={styles.body}>
+//       {/* <Header onSearch={handleSearchChange} initialMovies={allTrendingMovies}/>
+//       <CardList cards={trendingMovies} /> */}
+//     </div>
+//   );
+// };
 
-export default MainPage;
+// export default MainPage;
