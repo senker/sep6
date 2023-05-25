@@ -8,16 +8,16 @@ import MuiModal from "@mui/material/Modal";
 import toast, {Toaster} from "react-hot-toast";
 import {useRecoilState} from "recoil";
 import ReactPlayer from "react-player/lazy";
-
 import styles from "./Modal.module.scss";
-import {modalState, movieState} from "@/app/atoms/modalAtom";
-import {Element} from "@/types/element.dto";
-import {Movie} from "@/types/movieFull.dto";
-import {Genre} from "@/types/genre.dto";
-import {Crew} from "@/types/crew.dto";
-import {MovieCredits} from "@/types/movieCredits.dto";
-import {getNumberWithSpaces} from "@/utils/numbers";
-import {formatDate} from "@/utils/date";
+import { modalState, movieState } from "@/app/atoms/modalAtom";
+import { Element } from "@/types/element.dto";
+import { Movie } from "@/types/movieFull.dto";
+import { Genre } from "@/types/genre.dto";
+import { Crew } from "@/types/crew.dto";
+import { MovieCredits } from "@/types/movieCredits.dto";
+import { getNumberWithSpaces } from "@/utils/numbers";
+import { formatDate } from "@/utils/date";
+import { useCustomSession } from "../../../hooks/useCustomSession";
 
 function Modal() {
   const [showModal, setShowModal] = useRecoilState(modalState);
@@ -34,13 +34,20 @@ function Modal() {
 
   const [muted, setMuted] = useState(true);
   const [addedToList, setAddedToList] = useState(false);
+  const [movieList, setMovieList] = useState<number[]>([]);
 
   // Extra fancy stuff
   const resolutions = ["HD", "Full HD", "Ultra HD", "4K", "8K"];
   const randomResolution =
     resolutions[Math.floor(Math.random() * resolutions.length)];
 
+  const { data: session } = useCustomSession();
+  const sessionFavourites = session?.user?.favourites;
+  const userId = session?.user?.id;
+
   useEffect(() => {
+    setMovieList(sessionFavourites || []);
+
     if (!movie) return;
 
     async function getMovieCreditsFetch() {
@@ -112,63 +119,76 @@ function Modal() {
   // );
 
   const handleList = async () => {
-    setAddedToList(!addedToList);
-    //   if (addedToList) {
-    //     await deleteDoc(
-    //       doc(db, "customers", user!.uid, "myList", movie?.id.toString()!)
-    //     );
-    //
-    //     await fetch("/api/deleteMedia", {
-    //       body: JSON.stringify({
-    //         userId: user!.uid,
-    //         mediaId: movie?.id,
-    //         mediaType: movie?.media_type ?? "movie",
-    //       }),
-    //       headers: { "Content-Type": "application/json" },
-    //       method: "POST",
-    //     });
-    //
-    //     toast(
-    //       `"${
-    //         fetchedMovie?.title || fetchedMovie?.original_name
-    //       }" has been removed from your favorite list`,
-    //       {
-    //         duration: 8000,
-    //       }
-    //     );
-    //   } else {
-    //     await setDoc(
-    //       doc(db, "customers", user!.uid, "myList", movie?.id.toString()!),
-    //       { ...movie }
-    //     );
-    //
-    //     console.table({
-    //       userId: user!.uid,
-    //       movieId: movie?.id,
-    //       mediaType: movie?.media_type,
-    //       imageUrl: movie?.backdrop_path ?? "",
-    //     });
-    //
-    //     await fetch("/api/addMovieToList", {
-    //       body: JSON.stringify({
-    //         userId: user!.uid,
-    //         movieId: movie?.id,
-    //         mediaType: movie?.media_type ?? "movie",
-    //         imageUrl: movie?.backdrop_path ?? "",
-    //       }),
-    //       headers: { "Content-Type": "application/json" },
-    //       method: "POST",
-    //     });
-    //
-    toast(
-      `"${
-        fetchedMovie?.title || fetchedMovie?.original_name
-      }" has been added the your favorite list`,
-      {
-        duration: 1500,
-      }
-    );
-    //   }
+    console.log(movieList);
+    console.log(JSON.stringify(movie.id));
+    if (movieList.includes(movie.id) && typeof userId === "number"    ) {
+
+      console.log(movieList);
+      console.log(JSON.stringify(movie.id));
+      const movieIdToRemove = movie.id;
+      console.log(userId);
+      
+
+      const removeFavourite = async (userId: number, movieIdToRemove: number) => {
+        const response = await fetch("/api/favourites/removeFavourites", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId, movieIdToRemove }),
+        });
+        // Inside the removeFavourite function
+        console.log("Response status:", response.status);
+        console.log("Response headers:", response.headers);
+        if (response.ok) {
+          const data = await response.json();
+          console.log("Successfully removed favourite:", data);
+        } else {
+          const errorText = await response.text();
+          console.error("Error removing favourite:", errorText);
+        }
+      };
+
+      // Call the function with the appropriate userId and movieIdToRemove
+      removeFavourite(userId, movieIdToRemove);
+
+      toast(
+        `"${
+          fetchedMovie?.title || fetchedMovie?.original_name
+        }" has been removed from your favorite list`,
+        {
+          duration: 8000,
+        }
+      );
+    } else if (!movieList.includes(movie.id) && typeof userId === "number") {
+      const movieIdToAdd = movie.id;
+      const addToFavourites = async (userId: number, movieIdToRemove: number) => {
+        const response = await fetch('/api/favourites/addFavourites', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            userId,
+            movieIdToAdd,
+          }),
+        });
+      
+        const responseData = await response.json();
+        console.log(responseData.data.favourites);
+      };
+    
+      addToFavourites(userId, movieIdToAdd)
+
+      toast(
+        `"${
+          fetchedMovie?.title || fetchedMovie?.original_name
+        }" has been added the your favorite list`,
+        {
+          duration: 1500,
+        }
+      );
+    }
   };
 
   const handleClose = () => {
