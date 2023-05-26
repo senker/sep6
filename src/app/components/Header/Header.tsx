@@ -9,6 +9,9 @@ import {signOut} from "next-auth/react";
 import {SearchIcon} from "@heroicons/react/outline";
 
 const Header: React.FC = () => {
+
+    /* ------------------------------ SESSION ------------------------------ */
+
     const {data: session} = useCustomSession();
     const sessionUser = session?.user;
     const [userExists, setUserExists] = useState<boolean>(false);
@@ -54,11 +57,14 @@ const Header: React.FC = () => {
                     </div>
                 </div>
                 <div className={styles.container}>
-                    {userExists ? <Link href="/dashboard" className={styles.link}>Favorites</Link> :
-                        <Link href="/auth/sign-in" className={styles.link}>Login</Link>}
-                    <div className={styles.separator}></div>
-                    {userExists ? <a onClick={() => signOut()} className={styles.link}>Sign-out</a> :
-                        <Link href="auth/sign-up" className={styles.link}>Signup</Link>}
+                    {userExists ?
+                        <a onClick={() => signOut()} className={styles.link}>Sign-out</a>
+                        :
+                        <>
+                            <Link href="/auth/sign-in" className={styles.link}>Login</Link>
+                            <div className={styles.separator}></div>
+                            <Link href="auth/sign-up" className={styles.link}>Signup</Link>
+                        </>}
                 </div>
             </nav>
         </header>

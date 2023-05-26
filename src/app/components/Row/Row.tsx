@@ -33,20 +33,6 @@ function Row({title, movies, loadingMessage='Loading...'}: Props) {
         }
     };
 
-    // function handleOpacityON() {
-    //     const leftButton = document.querySelector(`#row_container_left_button`);
-    //     const rightButton = document.querySelector(`#row_container_left_button`);
-    //     leftButton.style.opacity = "1";
-    //     rightButton.style.opacity = "1";
-    // }
-    //
-    // function handleOpacityOFF() {
-    //     const leftButton = document.querySelector(`#row_container_right_button`);
-    //     const rightButton = document.querySelector(`#row_container_right_button`);
-    //     leftButton.style.opacity = "0";
-    //     rightButton.style.opacity = "0";
-    // }
-
     if (!movies?.length) {
         return <p>{loadingMessage}</p>; // Use the provided loading message prop
       }
