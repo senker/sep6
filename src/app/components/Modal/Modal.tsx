@@ -17,7 +17,7 @@ import { Crew } from "@/types/crew.dto";
 import { MovieCredits } from "@/types/movieCredits.dto";
 import { getNumberWithSpaces } from "@/utils/numbers";
 import { formatDate } from "@/utils/date";
-import { useCustomSession } from "../../../hooks/useCustomSession";
+import { useCustomSession } from "@/hooks/useCustomSession";
 
 function Modal() {
   const [showModal, setShowModal] = useRecoilState(modalState);
@@ -101,23 +101,6 @@ function Modal() {
     getMovieCreditsFetch();
   }, [movie]);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     return onSnapshot(
-  //       collection(db, "customers", user.uid, "myList"),
-  //       (snapshot) => setMovies(snapshot.docs)
-  //     );
-  //   }
-  // }, [db, movie?.id]);
-  //
-  // useEffect(
-  //   () =>
-  //     setAddedToList(
-  //       movies.findIndex((result) => result.data().id === movie?.id) !== -1
-  //     ),
-  //   [movies]
-  // );
-
   const handleList = async () => {
     console.log(movieList);
     console.log(JSON.stringify(movie.id));
@@ -127,7 +110,7 @@ function Modal() {
       console.log(JSON.stringify(movie.id));
       const movieIdToRemove = movie.id;
       console.log(userId);
-      
+
 
       const removeFavourite = async (userId: number, movieIdToRemove: number) => {
         const response = await fetch("/api/favourites/removeFavourites", {
@@ -173,11 +156,11 @@ function Modal() {
             movieIdToAdd,
           }),
         });
-      
+
         const responseData = await response.json();
         console.log(responseData.data.favourites);
       };
-    
+
       addToFavourites(userId, movieIdToAdd)
 
       toast(

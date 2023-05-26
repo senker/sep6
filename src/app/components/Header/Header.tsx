@@ -1,28 +1,26 @@
 "use client"
 
+import {useCustomSession} from "@/hooks/useCustomSession";
 import {useEffect, useState} from "react";
+import styles from "./Header.module.scss"
 
 import Link from "next/link";
-import styles from "./Header.module.scss"
-// import {useCustomSession} from "@/hooks/useCustomSession";
+import {signOut} from "next-auth/react";
+import {SearchIcon} from "@heroicons/react/outline";
 
 const Header: React.FC = () => {
-    // const { data: session } = useCustomSession();
-    // const sessionExist = session?.user;
-    //
-    //
-    // // console.log(sessionExist)
-    //
-    // useEffect(() => {
-    //     if (sessionExist != null) {
-    //         console.log(sessionExist)
-    //     } else {
-    //         console.log("no session")
-    //     }
-    // }, [sessionExist]);
+    const {data: session} = useCustomSession();
+    const sessionUser = session?.user;
+    const [userExists, setUserExists] = useState<boolean>(false);
 
+    useEffect(() => {
+        if (sessionUser != null) {
+            setUserExists(true);
+        }
+    }, [sessionUser]);
 
     /* ------------------------------ SCROLLING EFFECT ------------------------------ */
+
     const [isScrolled, setIsScrolled] = useState(false);
     useEffect(() => {
         const handleScroll = () => {
@@ -43,11 +41,24 @@ const Header: React.FC = () => {
     return (
         <header className={`${styles.header} ${isScrolled ? styles.scrolled : styles.notScrolled}`}>
             <nav className={styles.navbar}>
-                <Link href="/" className={styles.logo}>Best Movies</Link>
+                <div className={styles.first_container}>
+                    <Link href="/" className={styles.logo}>Best Movies</Link>
+                    <div className={styles.first_container_link}>
+                        <div className={styles.separator}></div>
+                        <div className={styles.search_container}>
+                            <div className={styles.search_icon}>
+                                <SearchIcon height="0.85rem" width="0.85rem"/>
+                            </div>
+                            <Link href="/search" className={styles.link}>Search</Link>
+                        </div>
+                    </div>
+                </div>
                 <div className={styles.container}>
-                    <Link href="/search" className={styles.link}>Search</Link>
+                    {userExists ? <Link href="/dashboard" className={styles.link}>Favorites</Link> :
+                        <Link href="/auth/sign-in" className={styles.link}>Login</Link>}
                     <div className={styles.separator}></div>
-                    <Link href="/auth/sign-in" className={styles.link}>Login</Link>
+                    {userExists ? <a onClick={() => signOut()} className={styles.link}>Sign-out</a> :
+                        <Link href="auth/sign-up" className={styles.link}>Signup</Link>}
                 </div>
             </nav>
         </header>

@@ -52,55 +52,82 @@
   margin: 0 auto;
 }
 
-  .logo {
-    letter-spacing: .01em;
-    display: table-caption;
-    line-height: 0.85rem;
-    width: 10px;
-    margin-top: 15px;
-    text-transform: uppercase;
-    color: aliceblue;
-    text-decoration: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    transition: all 350ms ease-out;
-    z-index: 99;
-    font-weight: 700;
-  }
+.first_container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
 
-  .logo:hover {
-    color: white;
-    filter: brightness(1.2);
-  }
+.first_container_link,
+.search_container {
+  display: flex;
+  align-items: center;
+}
 
-  .container {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    gap: 2rem;
-    align-items: center;
-    justify-content: flex-end;
 
-    .link {
-      margin-right: .75rem;
-      color: aliceblue;
-      padding: 10px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity 350ms ease-out;
-      z-index: 99;
-      letter-spacing: 0.02em;
-      font-family: 'Syne', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      line-height: 13px;
-      opacity: .5;
-    }
+.search_container {
+  opacity: .75;
+}
 
-    .link:hover {
-      opacity: 1;
-    }
-  }
+.search_container:hover {
+  opacity: 1;
+}
+
+.search_icon {
+  margin-left: 2rem;
+}
+
+.logo {
+  padding-right: 4rem;
+  letter-spacing: .01em;
+  display: table-caption;
+  line-height: 0.85rem;
+  width: 10px;
+  margin-top: 15px;
+  text-transform: uppercase;
+  color: aliceblue;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  transition: all 350ms ease-out;
+  z-index: 99;
+  font-weight: 700;
+}
+
+.logo:hover {
+  color: white;
+  filter: brightness(1.2);
+}
+
+.container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: flex-end;
+
+}
+
+.link {
+  margin-right: .75rem;
+  color: aliceblue;
+  padding: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 350ms ease-out;
+  z-index: 99;
+  letter-spacing: 0.02em;
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 13px;
+  opacity: .5;
+}
+
+.link:hover {
+  opacity: 1;
+}
 
 .separator {
   background-color: aliceblue;

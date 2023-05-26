@@ -65,7 +65,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
           required
         />
         <label className={styles.sign_up_form_input_label} htmlFor="name">
-          Name:
+          Name
         </label>
       </div>
 
@@ -81,7 +81,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
           required
         />
         <label className={styles.sign_up_form_input_label} htmlFor="email">
-          Email:
+          Email
         </label>
       </div>
       <div className={styles.sign_up_form_input_container}>
@@ -96,7 +96,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
           required
         />
         <label className={styles.sign_up_form_input_label} htmlFor="password">
-          Password:
+          Password
         </label>
       </div>
       <div className={styles.sign_up_form_input_container}>
@@ -114,7 +114,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
           className={styles.sign_up_form_input_label}
           htmlFor="repeatPassword"
         >
-          Confirm Password:
+          Confirm Password
         </label>
       </div>
       <div className={styles.form_button_container}>
