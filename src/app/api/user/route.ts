@@ -96,17 +96,3 @@ export async function PATCH(
     return new NextResponse("Could not save the edited user", { status: 500 });
   }
 }
-
-// GET TEST USER
-// export async function GET(request: NextApiRequest, response: NextApiResponse) {
-//     try {
-//         const user = await prisma.user.findFirst({
-//             where: {
-//                 email: 'dp@email.com'
-//             }
-//         });
-//         return new Response(JSON.stringify(user), { status: 200 });
-//     } catch (error) {
-//         return new Response("Could not return test user", { status: 500 });
-//     }
-// }
