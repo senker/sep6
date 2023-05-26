@@ -10,3 +10,46 @@
   font-family: 'Syne', sans-serif;
   font-size: 52px;
 }
+
+.add_some_link {
+  cursor: pointer;
+  animation: pulsate 5s ease-out;
+  animation-iteration-count: infinite;
+  color: #fff;
+  text-decoration: none;
+}
+
+.underline_animation {
+  display: inline-block;
+  position: relative;
+  color: #fff;
+  text-decoration: none;
+}
+.underline_animation::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  transform-origin: bottom right;
+  transition: transform 0.45s ease-out;
+}
+.underline_animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+@keyframes pulsate {
+  0% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1.0;
+  }
+  100% {
+    opacity: 0.85;
+  }
+}

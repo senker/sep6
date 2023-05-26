@@ -6,11 +6,14 @@ import {Movie} from "@/types/movieFull.dto";
 import {useCustomSession} from "@/hooks/useCustomSession";
 import Modal from "../components/Modal/Modal";
 import styles from './favorites.module.scss'
+import Link from "next/link";
 
 export default function Dashboard() {
     const {data: session} = useCustomSession();
-    const [movies, setMovies] = useState<Movie[]>([]);
     const sessionFavourites = session?.user?.favourites;
+    const [movies, setMovies] = useState<Movie[]>([]);
+    const [movieList, setMovieList] = useState<boolean>(false)
+
 
     useEffect(() => {
         async function fetchMovies() {
@@ -23,7 +26,12 @@ export default function Dashboard() {
                 });
                 const fetchedMovies = await Promise.all(moviePromises);
                 setMovies(fetchedMovies);
-                // console.log(movies);
+                console.log(fetchedMovies)
+
+                if (fetchedMovies.length !== 0) {
+                    console.log("We have some shit")
+                    setMovieList(true)
+                }
             }
         }
 
@@ -33,8 +41,14 @@ export default function Dashboard() {
     return (
         <div className={styles.favorites_container}>
             <div className={styles.favorites_main}>
-                <p className={styles.favorites_title}>My list</p>
-                <Row title="" movies={movies}/>
+                {!movieList ?
+                    <>
+                        <p className={styles.favorites_title}>Your list is empty. <Link href={'/'} className={`${styles.add_some_link} ${styles.underline_animation}`}>Add some.</Link></p>
+                    </> :
+                    <>
+                        <p className={styles.favorites_title}>My list</p>
+                        <Row title="" movies={movies}/>
+                    </>}
             </div>
             <Modal/>
         </div>

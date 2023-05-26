@@ -7,6 +7,7 @@ import styles from "./Header.module.scss"
 import Link from "next/link";
 import {signOut} from "next-auth/react";
 import {SearchIcon} from "@heroicons/react/outline";
+import {useRouter} from "next/navigation";
 
 const Header: React.FC = () => {
 
@@ -24,6 +25,7 @@ const Header: React.FC = () => {
 
     /* ------------------------------ SCROLLING EFFECT ------------------------------ */
 
+    const router = useRouter()
     const [isScrolled, setIsScrolled] = useState(false);
     useEffect(() => {
         const handleScroll = () => {
@@ -40,6 +42,11 @@ const Header: React.FC = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
+
+    // TODO -> change to the deployed domain
+    function handleSignOut() {
+        signOut({ callbackUrl: 'http://localhost:3000/' })
+    }
 
     return (
         <header className={`${styles.header} ${isScrolled ? styles.scrolled : styles.notScrolled}`}>
@@ -58,7 +65,7 @@ const Header: React.FC = () => {
                 </div>
                 <div className={styles.container}>
                     {userExists ?
-                        <a onClick={() => signOut()} className={styles.link}>Sign-out</a>
+                        <a onClick={handleSignOut} className={styles.link}>Sign-out</a>
                         :
                         <>
                             <Link href="/auth/sign-in" className={styles.link}>Login</Link>
