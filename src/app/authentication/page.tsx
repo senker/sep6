@@ -5,6 +5,7 @@ import styles from "./Authentication.module.scss";
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
+
   return (
     <div>
       <div>  ---  </div>

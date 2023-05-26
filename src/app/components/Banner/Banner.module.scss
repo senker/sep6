@@ -78,10 +78,12 @@
 .banner_button_container {
   display: flex;
   margin-top: 1rem;
+  width: 50%;
   gap: 1rem;
 }
 
 .banner_button {
+  width: 50%;
   cursor: pointer;
   gap: .5rem;
   font-size: 1rem;

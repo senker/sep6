@@ -384,9 +384,7 @@ function Modal() {
                 <div className={styles.modal_container_director_title}>
                   {movieExecutors.writers.length > 0 ? (
                     <h5
-                      className={
-                        styles.modal_container_director_title_typography
-                      }
+                      className={styles.modal_container_director_title_typography}
                     >
                       Writer{movieExecutors.writers.length > 1 && "s"}
                     </h5>

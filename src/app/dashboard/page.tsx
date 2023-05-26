@@ -1,9 +1,10 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Row from "../components/Row/Row";
 import styles from "./Dashboard.module.scss";
 import { Movie } from "@/types/movieFull.dto";
-import { useCustomSession } from "../../hooks/useCustomSession";
+import { useCustomSession } from "@/hooks/useCustomSession";
 import Modal from "../components/Modal/Modal";
 
 export default function Dashboard() {

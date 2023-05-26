@@ -25,8 +25,6 @@ function Banner({ netflixOriginals }: Props) {
     setMovie(netflixOriginals[randomIndex]);
   }, [netflixOriginals]);
 
-  console.log(movie);
-
   return (
     <div className={styles.banner_container}>
       <div className={styles.banner_container_image}>

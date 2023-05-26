@@ -4,8 +4,23 @@ import {useEffect, useState} from "react";
 
 import Link from "next/link";
 import styles from "./Header.module.scss"
+// import {useCustomSession} from "@/hooks/useCustomSession";
 
-const Header: React.FC = () => {
+const Header: () => Promise<JSX.Element> = async () => {
+    // const { data: session } = useCustomSession();
+    // const sessionExist = session?.user;
+    //
+    //
+    // // console.log(sessionExist)
+    //
+    // useEffect(() => {
+    //     if (sessionExist != null) {
+    //         console.log(sessionExist)
+    //     } else {
+    //         console.log("no session")
+    //     }
+    // }, [sessionExist]);
+
 
     /* ------------------------------ SCROLLING EFFECT ------------------------------ */
     const [isScrolled, setIsScrolled] = useState(false);
@@ -32,7 +47,7 @@ const Header: React.FC = () => {
                 <div className={styles.container}>
                     <Link href="/search" className={styles.link}>Search</Link>
                     <div className={styles.separator}></div>
-                    <Link href="/authentication" className={styles.link}>Login</Link>
+                    <Link href="/auth/sign-in" className={styles.link}>Login</Link>
                 </div>
             </nav>
         </header>
