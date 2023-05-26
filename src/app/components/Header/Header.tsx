@@ -6,7 +6,7 @@ import Link from "next/link";
 import styles from "./Header.module.scss"
 // import {useCustomSession} from "@/hooks/useCustomSession";
 
-const Header: () => Promise<JSX.Element> = async () => {
+const Header: React.FC = () => {
     // const { data: session } = useCustomSession();
     // const sessionExist = session?.user;
     //
