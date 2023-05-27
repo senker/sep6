@@ -1,6 +1,6 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Row from "../components/Row/Row";
 import {Movie} from "@/types/movieFull.dto";
 import {useCustomSession} from "@/hooks/useCustomSession";

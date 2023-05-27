@@ -301,12 +301,7 @@ function Modal() {
                   <span className={styles.modal_container_color_gray}>
                     Runtime:{" "}
                   </span>
-                  <p
-                    style={{
-                      display: "inline-block",
-                      fontWeight: "bolder",
-                    }}
-                  >
+                  <p className={styles.modal_container_runtime}>
                     {fetchedMovie?.runtime || "N/A"}
                   </p>{" "}
                   min

@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from "./SearchBar.module.scss"
 import { SearchBoxProps } from '@/types/searchBoxProps.dto';
 
 const SearchBox: React.FC<SearchBoxProps> = ({ className, placeholder, onChangeHandler }) => {

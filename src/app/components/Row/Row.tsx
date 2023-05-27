@@ -10,10 +10,10 @@ import {useRef, useState} from "react";
 interface Props {
     title: string;
     movies: Movie[];
-    loadingMessage?: string; 
+    loadingMessage?: string;
 }
 
-function Row({title, movies, loadingMessage='Loading...'}: Props) {
+function Row({title, movies, loadingMessage = 'Loading movies'}: Props) {
     const rowRef = useRef<HTMLDivElement>(null);
     const [isMoved, setIsMoved] = useState(false);
 
@@ -34,8 +34,10 @@ function Row({title, movies, loadingMessage='Loading...'}: Props) {
     };
 
     if (!movies?.length) {
-        return <p>{loadingMessage}</p>; // Use the provided loading message prop
-      }
+        return <div className={styles.loading_message_container}>
+            <p className={styles.loading_message}>{loadingMessage}</p>
+        </div>
+    }
 
     return (
         <div className={styles.row_container}>

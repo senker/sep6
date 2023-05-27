@@ -3,6 +3,18 @@
   width: 90vw;
 }
 
+.loading_message_container {
+  height: 100%;
+  margin-top: 35vh;
+
+  .loading_message {
+    font-size: 3.5rem;
+    font-family: 'Syne', sans-serif;
+    opacity: 0.5;
+  }
+}
+
+
 .row_container_chevron_left {
   background: aliceblue;
   position: absolute;

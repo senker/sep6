@@ -21,3 +21,14 @@ export const formatDate = (dateString: string | any | undefined): string => {
     // Format the day, month name, and year into the desired output string
     return `${day} ${monthName} ${year}`;
 };
+
+
+export const formatDateYear = (dateString: string | any | undefined): string => {
+    const date = new Date(dateString);
+
+    if (isNaN(date.getTime())) {
+        return "No date available";
+    }
+    const year = date.getFullYear();
+    return `${year}`;
+};

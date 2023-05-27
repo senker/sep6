@@ -46,27 +46,8 @@ const AuthForm: React.FC = () => {
             } else {
                 router.push('/')
             }
-            // console.log('SignInResult ->', signInResult);
         } catch (error: any) {
         }
-
-        // if (signInResult && !signInResult['error']) router.replace('/profile');
-        //
-        // const response = await fetch('/api/auth/log-in', {
-        //   body: JSON.stringify({ email, password }),
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   method: 'POST',
-        // });
-        //
-        // const data = await response.json();
-        //
-        // if (!response.ok) {
-        //   console.error(data.error || 'Something went wrong!');
-        // }
-        //
-        // return data;
     };
 
     return (

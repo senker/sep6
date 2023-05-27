@@ -9,6 +9,7 @@ import {useRecoilState} from "recoil";
 import {Movie} from "@/types/movieFull.dto";
 import {useRouter} from "next/navigation";
 import {useCustomSession} from "@/hooks/useCustomSession";
+import {formatDate, formatDateYear} from "@/utils/date";
 
 
 interface Props {
@@ -28,6 +29,19 @@ function Banner({netflixOriginals}: Props) {
             setUserExists(true);
         }
     }, [sessionUser]);
+
+    /* ------------------------------ FANCY MOCk-UP LOGIC ------------------------------ */
+
+    // Random resolution
+    const resolutions = ["HD", "Full HD", "Ultra HD", "4K", "8K"];
+    const randomResolution =
+        resolutions[Math.floor(Math.random() * resolutions.length)];
+
+    // Random match percentage
+    const getRandomMatchPercentage = () => {
+        return Math.floor(Math.random() * (98 - 85 + 1) + 85);
+    };
+    const matchPercentage = getRandomMatchPercentage();
 
     /* ------------------------------ OTHER BASE LOGIC ------------------------------ */
 
@@ -68,6 +82,29 @@ function Banner({netflixOriginals}: Props) {
                     movie?.original_name ||
                     "No Available Title"}
             </h1>
+
+            <div className={styles.banner_info}>
+                <p className={styles.banner_match}>
+                   {matchPercentage}% Match
+                </p>
+
+                <p className={styles.banner_date}>
+                    {formatDateYear(movie?.release_date) ||
+                        formatDateYear(movie?.first_air_date) ||
+                        null}
+                </p>
+
+                <div className={styles.banner_icon}>
+                    {randomResolution}
+                </div>
+
+                <div className={styles.banner_icon}>
+                    {movie?.vote_average.toFixed(1) || null}
+                </div>
+
+
+            </div>
+
             <p className={styles.banner_overview}>
                 {movie?.overview || "No available description for this movie"}
             </p>
