@@ -1,12 +1,12 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import XIcon from "@heroicons/react/outline/XIcon";
-import {PlusIcon, VolumeOffIcon} from "@heroicons/react/solid";
-import {CheckIcon, VolumeUpIcon} from "@heroicons/react/outline";
+import { PlusIcon, VolumeOffIcon } from "@heroicons/react/solid";
+import { CheckIcon, VolumeUpIcon } from "@heroicons/react/outline";
 import MuiModal from "@mui/material/Modal";
-import toast, {Toaster} from "react-hot-toast";
-import {useRecoilState} from "recoil";
+import toast, { Toaster } from "react-hot-toast";
+import { useRecoilState } from "recoil";
 import ReactPlayer from "react-player/lazy";
 import styles from "./Modal.module.scss";
 import { modalState, movieState } from "@/app/atoms/modalAtom";
@@ -102,17 +102,36 @@ function Modal() {
   }, [movie]);
 
   const handleList = async () => {
+    let getFavor: any = {}; // Initialize as an empty object
+    if (userId != null) {
+      await fetch("/api/favourites/getFavourites", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          userId: userId.toString(),
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => (getFavor = data)) // Assign data to getFavor
+        .catch((error) =>
+          console.error("Error fetching favourite movie IDs:", error)
+        );
+
+      console.log(getFavor.data);
+    }
+    const moviezList = getFavor.data;
     console.log(movieList);
     console.log(JSON.stringify(movie.id));
-    if (movieList.includes(movie.id) && typeof userId === "number"    ) {
-
+    if (moviezList.includes(movie.id) && typeof userId === "number") {
       console.log(movieList);
       console.log(JSON.stringify(movie.id));
       const movieIdToRemove = movie.id;
       console.log(userId);
 
-
-      const removeFavourite = async (userId: number, movieIdToRemove: number) => {
+      const removeFavourite = async (
+        userId: number,
+        movieIdToRemove: number
+      ) => {
         const response = await fetch("/api/favourites/removeFavourites", {
           method: "POST",
           headers: {
@@ -143,13 +162,16 @@ function Modal() {
           duration: 8000,
         }
       );
-    } else if (!movieList.includes(movie.id) && typeof userId === "number") {
+    } else if (!moviezList.includes(movie.id) && typeof userId === "number") {
       const movieIdToAdd = movie.id;
-      const addToFavourites = async (userId: number, movieIdToRemove: number) => {
-        const response = await fetch('/api/favourites/addFavourites', {
-          method: 'POST',
+      const addToFavourites = async (
+        userId: number,
+        movieIdToRemove: number
+      ) => {
+        const response = await fetch("/api/favourites/addFavourites", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             userId,
@@ -161,7 +183,7 @@ function Modal() {
         console.log(responseData.data.favourites);
       };
 
-      addToFavourites(userId, movieIdToAdd)
+      addToFavourites(userId, movieIdToAdd);
 
       toast(
         `"${
@@ -362,7 +384,9 @@ function Modal() {
                 <div className={styles.modal_container_director_title}>
                   {movieExecutors.writers.length > 0 ? (
                     <h5
-                      className={styles.modal_container_director_title_typography}
+                      className={
+                        styles.modal_container_director_title_typography
+                      }
                     >
                       Writer{movieExecutors.writers.length > 1 && "s"}
                     </h5>
