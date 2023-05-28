@@ -48,7 +48,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSubmit }) => {
       return () => clearTimeout(timeout);
     }
     onSubmit(formValues);
-    router.push('/')
+    router.push('/auth/sign-in')
   };
 
   return (
