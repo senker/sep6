@@ -34,7 +34,6 @@ function Modal() {
 
   const [muted, setMuted] = useState(true);
   const [addedToList, setAddedToList] = useState(false);
-  const [movieList, setMovieList] = useState<number[]>([]);
 
   // Extra fancy stuff
   const resolutions = ["HD", "Full HD", "Ultra HD", "4K", "8K"];
@@ -46,7 +45,6 @@ function Modal() {
   const userId = session?.user?.id;
 
   useEffect(() => {
-    setMovieList(sessionFavourites || []);
 
     if (!movie) return;
 
@@ -120,10 +118,18 @@ function Modal() {
       console.log(getFavor.data);
     }
     const moviezList = getFavor.data;
-    console.log(movieList);
+
     console.log(JSON.stringify(movie.id));
-    if (moviezList.includes(movie.id) && typeof userId === "number") {
-      console.log(movieList);
+
+    console.log('TEST')
+    console.log("moviezList.includes(movie.id):", moviezList.includes(movie.id));
+    console.log("typeof userId === 'number':", typeof userId === "number");
+
+      const userIdNumber = userId !== null && userId !== undefined ? parseInt(userId.toString(), 10) : -1;
+    
+
+    if (moviezList.includes(movie.id) && userIdNumber !== -1) {
+
       console.log(JSON.stringify(movie.id));
       const movieIdToRemove = movie.id;
       console.log(userId);
@@ -152,7 +158,7 @@ function Modal() {
       };
 
       // Call the function with the appropriate userId and movieIdToRemove
-      removeFavourite(userId, movieIdToRemove);
+      removeFavourite(userIdNumber, movieIdToRemove);
 
       toast(
         `"${
@@ -162,7 +168,7 @@ function Modal() {
           duration: 8000,
         }
       );
-    } else if (!moviezList.includes(movie.id) && typeof userId === "number") {
+    } else if (!moviezList.includes(movie.id) && userIdNumber !== -1) {
       const movieIdToAdd = movie.id;
       const addToFavourites = async (
         userId: number,
@@ -183,7 +189,7 @@ function Modal() {
         console.log(responseData.data.favourites);
       };
 
-      addToFavourites(userId, movieIdToAdd);
+      addToFavourites(userIdNumber, movieIdToAdd);
 
       toast(
         `"${
