@@ -45,7 +45,6 @@ function Modal() {
   const userId = session?.user?.id;
 
   useEffect(() => {
-
     if (!movie) return;
 
     async function getMovieCreditsFetch() {
@@ -119,17 +118,12 @@ function Modal() {
     }
     const moviezList = getFavor.data;
 
-    console.log(JSON.stringify(movie.id));
-
-    console.log('TEST')
-    console.log("moviezList.includes(movie.id):", moviezList.includes(movie.id));
-    console.log("typeof userId === 'number':", typeof userId === "number");
-
-      const userIdNumber = userId !== null && userId !== undefined ? parseInt(userId.toString(), 10) : -1;
-    
+    const userIdNumber =
+      userId !== null && userId !== undefined
+        ? parseInt(userId.toString(), 10)
+        : -1;
 
     if (moviezList.includes(movie.id) && userIdNumber !== -1) {
-
       console.log(JSON.stringify(movie.id));
       const movieIdToRemove = movie.id;
       console.log(userId);
@@ -159,6 +153,7 @@ function Modal() {
 
       // Call the function with the appropriate userId and movieIdToRemove
       removeFavourite(userIdNumber, movieIdToRemove);
+      setAddedToList(false);
 
       toast(
         `"${
@@ -190,7 +185,7 @@ function Modal() {
       };
 
       addToFavourites(userIdNumber, movieIdToAdd);
-
+      setAddedToList(true);
       toast(
         `"${
           fetchedMovie?.title || fetchedMovie?.original_name
