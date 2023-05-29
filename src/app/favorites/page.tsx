@@ -12,7 +12,7 @@ export default function Dashboard() {
   const userId = session?.user.id;
 
   const [getFavor, setGetFavor] = useState<any>({}); // Use state to manage getFavor
-  const [moviezList, setMoviezList] = useState<any[]>([]); // Use state to manage moviezList
+  const [moviesList, setMoviesList] = useState<any[]>([]); // Use state to manage moviesList
 
   useEffect(() => {
     async function fetchFavourites() {
@@ -27,7 +27,7 @@ export default function Dashboard() {
           .then((response) => response.json())
           .then((data) => {
             setGetFavor(data); // Update getFavor using setGetFavor
-            setMoviezList(data.data); // Update moviezList using setMoviezList
+            setMoviesList(data.data); // Update moviesList using setMoviesList
           })
           .catch((error) =>
             console.error("Error fetching favourite movie IDs:", error)
@@ -43,8 +43,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     async function fetchMovies() {
-      if (moviezList != null) {
-        const moviePromises = moviezList.map(async (movieId: any) => {
+      if (moviesList != null) {
+        const moviePromises = moviesList.map(async (movieId: any) => {
           const response = await fetch(
             `https://api.themoviedb.org/3/movie/${movieId}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&append_to_response=videos`
           );
@@ -62,7 +62,7 @@ export default function Dashboard() {
     }
 
     fetchMovies();
-  }, [moviezList]);
+  }, [moviesList]);
 
   return (
     <div className={styles.favorites_container}>
