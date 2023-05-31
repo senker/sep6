@@ -3,6 +3,8 @@ import {compare} from 'bcrypt'
 import NextAuth, {type NextAuthOptions} from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
+// resource used: https://codevoweb.com/setup-and-use-nextauth-in-nextjs-13-app-directory/
+
 export const authOptions: NextAuthOptions = {
     session: {
         strategy: 'jwt'

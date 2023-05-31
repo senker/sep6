@@ -30,7 +30,7 @@ export default function Dashboard() {
             setMoviesList(data.data); // Update moviesList using setMoviesList
           })
           .catch((error) =>
-            console.error("Error fetching favourite movie IDs:", error)
+            console.error("Error fetching favourites movie IDs:", error)
           );
       }
     }
@@ -55,7 +55,6 @@ export default function Dashboard() {
         console.log(fetchedMovies);
 
         if (fetchedMovies.length !== 0) {
-          console.log("We have some shit");
           setMovieList(true);
         }
       }
