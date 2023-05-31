@@ -35,7 +35,6 @@ function Modal() {
   const [muted, setMuted] = useState(true);
   const [addedToList, setAddedToList] = useState(false);
 
-  // Extra fancy stuff
   const resolutions = ["HD", "Full HD", "Ultra HD", "4K", "8K"];
   const randomResolution =
     resolutions[Math.floor(Math.random() * resolutions.length)];
