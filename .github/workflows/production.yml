@@ -16,7 +16,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    name: "Echo values"
-      run: |
-        echo ${{env.VERCEL_TOKEN}}
-        echo ${{env.VAR_VERCEL_TOKEN}}
+      - name: "Echo values"
+        run: |
+          echo ${{env.VERCEL_TOKEN}}
+          echo ${{env.VAR_VERCEL_TOKEN}}
